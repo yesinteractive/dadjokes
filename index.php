@@ -10,7 +10,7 @@ require_once 'lib/limonade.php';
 function configure()
 {
   option('env', ENV_DEVELOPMENT);
-  option('base_uri', "/limonade/");
+  option('base_uri', "/gitprojects/limonade/");
   option('session', true); // enable
   option('session', 'yellowlemons'); // enable with a specific session name
   
