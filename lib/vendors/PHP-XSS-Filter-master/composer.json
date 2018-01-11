@@ -1,0 +1,11 @@
+{
+  "name": "jblond/php-xss-filter",
+  "description": "PHP XSS Filter",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "JBlond",
+      "email": "leet31337@web.de"
+    }
+  ]
+}
