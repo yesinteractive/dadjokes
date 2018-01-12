@@ -226,7 +226,8 @@ function html_my_layout($vars){ extract($vars);?>
     </div>
     
     <?php echo $content?>
-    <hr>
+      <BR><BR>
+        <img src="<?php echo url_for('/public/fsl.jpeg')?>"> <hr>
     <a href="<?php echo url_for('/')?>">Home - Start Session</a> |
     <a href="<?php echo url_for('/showip/', $name)?>">Show IP - Show Session</a> | 
     <a href="<?php echo url_for('/hello/', $name)?>">Hello - Kill Session</a> | 
