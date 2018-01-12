@@ -222,7 +222,7 @@ function html_my_layout($vars){ extract($vars);?>
   <body>
   <div class="container">
     <BR><div class="jumbotron">
-        <h1>My Limonade Bootstrap template</h1>
+        <h1>Fresh Squeezed Limonade Skeleton App</h1>
     </div>
     
     <?php echo $content?>
