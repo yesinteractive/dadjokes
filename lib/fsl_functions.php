@@ -66,4 +66,41 @@ function fsl_decrypt($string, $key = NULL){
   $decrypted = openssl_decrypt($parts[0], AES_256_CBC, $encryption_key, 0, base64_decode($parts[1]));
   return $decrypted;
 }
+
+/*
+ * fsl_session_start
+ *
+ * decrypts a string encrypted with fsl_encrypt function
+ * remember to include full string with appended IV and the ':' seperator
+ *
+ * @string (string) String to be decrypted
+ * @key (string) OPTIONAL encryption key to use. If not provided default
+ *     key specified with option('global_encryption_key', 'setyourkeyhere') config
+ * @return (string)
+ */
+
+
+/*
+ * fsl_session_valid
+ *
+ * decrypts a string encrypted with fsl_encrypt function
+ * remember to include full string with appended IV and the ':' seperator
+ *
+ * @string (string) String to be decrypted
+ * @key (string) OPTIONAL encryption key to use. If not provided default
+ *     key specified with option('global_encryption_key', 'setyourkeyhere') config
+ * @return (string)
+ */
+
+/*
+ * fsl_session_kill
+ *
+ * decrypts a string encrypted with fsl_encrypt function
+ * remember to include full string with appended IV and the ':' seperator
+ *
+ * @string (string) String to be decrypted
+ * @key (string) OPTIONAL encryption key to use. If not provided default
+ *     key specified with option('global_encryption_key', 'setyourkeyhere') config
+ * @return (string)
+ */
 ?>
