@@ -1,5 +1,7 @@
-[201801-11: VERSION 0.6]
+[2018-01: VERSION 0.6]
 
+* [NEW] Added fsl_functions.php library to lib directory
+* [NEW] Added new aes 256 encrypt functions in fsl_functions library
 * [NEW] Added PDO Template in index.php example as well as sessoion examples
 * [FIXED] XSS Vulnerabilities. Added xss_filter.class.php and applied it to request processing function.
 * [NEW] Added Latest Bootstrap UI libraries.

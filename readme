@@ -3,6 +3,20 @@
 FSL (Fresh Squeezed Limonade) is Yes Interactive's continuation and adaptation of the abandonded Limonade PHP micro framework project (https://github.com/sofadesign/limonade)
 originally created yy Fabrice Luraine. Below is the original README from Limonade for reference. Check back frequently for updates
 
+## Installation ##
+
+1. Once files are in place on web server, make sure to have URL rewriting enabled in Apache. 
+2. Verify that the directory FSL is placed in on your webserver has the AllowOverride directive set to ALL (AllowOverride All) in the Apache <Directory> configuration.
+   If this is not set then the included .htaccess file will not be read and routes will not be execute correctly.
+3. Update the RewriteBase directive in the included .htaccess file to accomodate your app if it is installed in a web sub directory (not root)
+
+## Best Practices ##
+
+One advantages of the FSL framework is that it can be used and configured in any way, whether develping MVC based applications or more simpler
+functional based applications. 
+
+#########################
+
 # Limonade: README
 
 Limonade is a PHP micro framework for rapid web development and prototyping.
