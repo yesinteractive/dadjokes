@@ -14,6 +14,11 @@ function configure()
   option('session', true); // enable
   option('session', 'yellowlemons'); // enable with a specific session name
   
+  //encryption configuration
+  option('global_encryption_key', 'setyourkeyhere'); // used in fsl_encrypt and fsl_decrypt
+  define('AES_256_CBC', 'aes-256-cbc'); //specify encryption cipher
+ 
+  //reccommend a random key to use, for example openssl_random_pseudo_bytes(32) will generate a good one
   
   #Initiate a DB connection (using PDO)
   #
@@ -101,7 +106,12 @@ dispatch('/showip/:what/:who', 'showip');
     
     if (isset($_SESSION['crop'])) $session = $_SESSION['crop'];
     else $session = "nada";
-    return html("IP of the client is $ip and session is $session");
+    
+    $estring = fsl_encrypt("this is a test");
+    $dstring = fsl_decrypt($estring);
+    
+    
+    return html("IP of the client is $ip and session is $session. <BR><BR>Encrypt string is $estring<BR><BR>Decrypted is $dstring ");
   }  
   
 dispatch('/hi/', 'hello_world2');
@@ -222,7 +232,7 @@ function html_my_layout($vars){ extract($vars);?>
   <body>
   <div class="container">
     <BR><div class="jumbotron">
-        <h1>Fresh Squeezed Limonade Skeleton App</h1>
+        <h1>Fresh Squeezed Limonade Skeleton App </h1>
     </div>
     
     <?php echo $content?>
