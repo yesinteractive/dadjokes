@@ -17,6 +17,11 @@ function configure()
   //encryption configuration
   option('global_encryption_key', 'setyourkeyhere'); // used in fsl_encrypt and fsl_decrypt
   define('AES_256_CBC', 'aes-256-cbc'); //specify encryption cipher
+  
+  //fsl configurations
+  option('fsl_session_length', 300); // session timeout in seconds, default is 300 seconds or 5 minutes. PHP default is typically 24 minute
+  
+ 
  
   //reccommend a random key to use, for example openssl_random_pseudo_bytes(32) will generate a good one
   
