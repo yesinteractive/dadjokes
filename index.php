@@ -10,13 +10,12 @@ require_once 'lib/limonade.php';
 function configure()
 {
   option('env', ENV_DEVELOPMENT);
-  option('base_uri', "/gitprojects/limonade/");
-  option('session', true); // enable
+  option('base_uri', "/gitprojects/limonade/"); //set if app is not in web root directory but in a subdirectory
+  //option('session', true); // enable
   option('session', 'yellowlemons'); // enable with a specific session name
   
   //encryption configuration
   option('global_encryption_key', 'setyourkeyhere'); // used in fsl_encrypt and fsl_decrypt
-  define('AES_256_CBC', 'aes-256-cbc'); //specify encryption cipher
   
   //fsl configurations
   option('fsl_session_length', 300); // session timeout in seconds, default is 300 seconds or 5 minutes. PHP default is typically 24 minute
@@ -81,7 +80,7 @@ function before($route)
 }
 
 ##############################################################################
-#  routes and controllers
+#  sample routes and controllers
 ##############################################################################
 # 
 #  routes and controllers
@@ -90,8 +89,8 @@ function before($route)
 #
 #  HTTP Method |  Url path         |  Controller function
 # -------------+-------------------+-------------------------------------------
-#   GET        |  /posts           |  blog_posts_index
-#   GET        |  /posts/:id       |  blog_posts_show 
+#   GET        |  /                |  hello_world
+
 
 
 dispatch('/', 'hello_world');
@@ -100,7 +99,7 @@ dispatch('/', 'hello_world');
     $_SESSION['crop'] = 'test';  
     set_or_default('name', params('who'), "everybody");
 
-    return html("Hellowwww world!");
+    return html("<h1>Ahhhhhhh! It works.</h1>");
   }
   
 dispatch('/showip/:what/:who', 'showip');
@@ -108,23 +107,18 @@ dispatch('/showip/:what/:who', 'showip');
   {
     $ip = $_SERVER['REMOTE_ADDR'];
     set_or_default('name', params('who'), "everybody");
-    
-    if (isset($_SESSION['crop'])) $session = $_SESSION['crop'];
-    else $session = "nada";
-    
+    //session data example
+   if (isset($_SESSION['crop'])) $session = $_SESSION['crop'];
+   else $session = "nada";
+     
+    //Encryption Example
     $estring = fsl_encrypt("this is a test");
     $dstring = fsl_decrypt($estring);
     
     
-    return html("IP of the client is $ip and session is $session. <BR><BR>Encrypt string is $estring<BR><BR>Decrypted is $dstring ");
+    return html("IP of the client is $ip.<BR>Your session is $session. <BR><BR>Encrypt string is $estring<BR><BR>Decrypted is $dstring ");
   }  
   
-dispatch('/hi/', 'hello_world2');
-  function hello_world2()
-  {
-    return "Hellowwww world!";
-  }
-
 dispatch('/hello/:who', 'hello');
   function hello()
   {
@@ -163,8 +157,6 @@ dispatch('/how_are_you/:name', 'how_are_you');
     set('name', $name);
     return html("I hope you are fine, $name.");
   }
-  
-
   
 dispatch('/images/:name/:size', 'image_show');
   function image_show()
@@ -233,14 +225,29 @@ function html_my_layout($vars){ extract($vars);?>
     <link rel="stylesheet" href="<?php echo option('base_uri'); ?>/public/css/bootstrap.min.css" integrity="sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13dy" crossorigin="anonymous">
 
     <title>Hello, world!</title>
+    <style css>
+      .navbar-custom {
+          background-color: #dddddd;
+       }
+    </style>
   </head>
   <body>
-  <div class="container">
-    <BR><div class="jumbotron">
-        <h1>Fresh Squeezed Limonade Skeleton App </h1>
-    </div>
+  <nav class="navbar navbar-light navbar-custom ">
+  <a class="navbar-brand" href="#">
+       <img src="<?php echo url_for('/public/fsl_logo.png')?>" class="img-responsive d-inline-block align-top" alt="Responsive image" style="max-height: 75px;">
+
+  </a>
+      <span class="navbar-text">
+    FSL: A refreshing PHP framework
+  </span>
+</nav>  
     
-    <?php echo $content?>
+   
+  <div class="container">
+   
+    <BR>
+    
+    <?php echo $content ?>
       <BR><BR>
         <img src="<?php echo url_for('/public/fsl.jpeg')?>"> <hr>
     <a href="<?php echo url_for('/')?>">Home - Start Session</a> |

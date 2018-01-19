@@ -21,14 +21,14 @@ function fsl_encrypt($string, $key = NULL){
 
   // Generate an initialization vector
   // This *MUST* be available for decryption as well
-  $iv = openssl_random_pseudo_bytes(openssl_cipher_iv_length(AES_256_CBC));
+  $iv = openssl_random_pseudo_bytes(openssl_cipher_iv_length('aes-256-cbc'));
 
   // Create some data to encrypt
   
   // Encrypt $data using aes-256-cbc cipher with the given encryption key and
   // our initialization vector. The 0 gives us the default options, but can
   // be changed to OPENSSL_RAW_DATA or OPENSSL_ZERO_PADDING
-  $encrypted = openssl_encrypt($string, AES_256_CBC, $encryption_key, 0, $iv);
+  $encrypted = openssl_encrypt($string, 'aes-256-cbc', $encryption_key, 0, $iv);
 
   // If we lose the $iv variable, we can't decrypt this, so:
   // - $encrypted is already base64-encoded from openssl_encrypt
@@ -63,7 +63,7 @@ function fsl_decrypt($string, $key = NULL){
 
   // Don't forget to base64-decode the $iv before feeding it back to
   //openssl_decrypt
-  $decrypted = openssl_decrypt($parts[0], AES_256_CBC, $encryption_key, 0, base64_decode($parts[1]));
+  $decrypted = openssl_decrypt($parts[0], 'aes-256-cbc', $encryption_key, 0, base64_decode($parts[1]));
   return $decrypted;
 }
 
