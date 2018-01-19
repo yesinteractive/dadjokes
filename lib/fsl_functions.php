@@ -68,6 +68,23 @@ function fsl_decrypt($string, $key = NULL){
 }
 
 /*
+ * fsl_scrub($string)
+ *
+ * removes xss threats from data. Use with all POST data references
+ *
+ * @string (string) String to be decrypted
+ * @key (string) OPTIONAL encryption key to use. If not provided default
+ *     key specified with option('global_encryption_key', 'setyourkeyhere') config
+ * @return (string)
+ */
+function fsl_scrub($string){
+        
+        $xss = new xss_filter();
+        $string = $xss->filter_it($string); 
+        return $string;
+}
+
+/*
  * fsl_session_start
  *
  * decrypts a string encrypted with fsl_encrypt function
