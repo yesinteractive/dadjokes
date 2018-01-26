@@ -1,0 +1,15 @@
+{
+    "require": {
+        "phpmailer/phpmailer": "^6.0",
+        "jblond/php-xss-filter" : "^0"
+    },
+      "autoload": {
+        "files": ["vendor/PHP-XSS-Filter-master/xss_filter.class.php"],
+        "psr-4": {
+            "PHPMailer\\PHPMailer\\Exception\\": "vendor/phpmailer/phpmailer/src/Exception.php",
+            "PHPMailer\\PHPMailer\\PHPMailer\\": "vendor/phpmailer/phpmailer/src/PHPMailer.php"
+        }       
+    }
+}
+
+ 

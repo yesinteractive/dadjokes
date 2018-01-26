@@ -1,6 +1,12 @@
 <?php
+##############################################################################
+#  requirements - must be included in your index.php
+##############################################################################
+# 
+require_once __DIR__ . '/lib/vendor/autoload.php';
 require_once 'lib/limonade.php';
-
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
 
 ##############################################################################
 #  configurations
@@ -14,9 +20,11 @@ function configure()
   //option('session', true); // enable
   option('session', 'yellowlemons'); // enable with a specific session name
   
+  //##############################################
   //encryption configuration
   option('global_encryption_key', 'setyourkeyhere'); // used in fsl_encrypt and fsl_decrypt
   
+  //##############################################
   //fsl configurations
   option('fsl_session_length', 300); // session timeout in seconds, default is 300 seconds or 5 minutes. PHP default is typically 24 minute
   
@@ -77,6 +85,7 @@ function before($route)
 {
   header("X-LIM-route-function: ".$route['callback']);
   layout('html_my_layout');
+ 
 }
 
 ##############################################################################
@@ -98,7 +107,7 @@ dispatch('/', 'hello_world');
   {
     $_SESSION['crop'] = 'test';  
     set_or_default('name', params('who'), "everybody");
-
+ $mail = new PHPMailer(true);
     return html("<h1>Ahhhhhhh! It works.</h1>");
   }
   

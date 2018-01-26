@@ -3,7 +3,7 @@
   Options +Indexes
   RewriteEngine on
 
-  # if your app is in a subfolder
+  # if your app is in a subfolder else set this to /
     RewriteBase /gitprojects/limonade/ 
 
   # test string is a valid files

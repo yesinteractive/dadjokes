@@ -17,7 +17,7 @@
 function fsl_encrypt($string, $key = NULL){
 
   //set key to default key if no key passed to function  
-  $encryption_key = (empty($key)) ? option('global_encryption_key') : $key;
+  $encryption_key = (empty($key)) ? option('fsl_global_encryption_key') : $key;
 
   // Generate an initialization vector
   // This *MUST* be available for decryption as well
@@ -53,13 +53,10 @@ function fsl_encrypt($string, $key = NULL){
 function fsl_decrypt($string, $key = NULL){
 
   //set key to default key if no key passed to function  
- $encryption_key = (empty($key)) ? option('global_encryption_key') : $key;
+ $encryption_key = (empty($key)) ? option('fsl_global_encryption_key') : $key;
 
   // To decrypt, separate the encrypted data from the initialization vector ($iv).
   $parts = explode(':', $string);
-
-  // $parts[0] = encrypted data
-  // $parts[1] = base-64 encoded initialization vector
 
   // Don't forget to base64-decode the $iv before feeding it back to
   //openssl_decrypt
@@ -85,35 +82,178 @@ function fsl_scrub($string){
 }
 
 /*
- * fsl_session_start
+ * fsl_session_set
  *
- * decrypts a string encrypted with fsl_encrypt function
- * remember to include full string with appended IV and the ':' seperator
- *
- * @string (string) String to be decrypted
- * @key (string) OPTIONAL encryption key to use. If not provided default
- *     key specified with option('global_encryption_key', 'setyourkeyhere') config
- * @return (string)
- */
-
+ * sets a new session value with optional timeout in seconds
+ * also used to set any cookie variable. all data is set encrypted with global key
+ * @name (string) Name of session
+ * @value (string) value of session
+ * @timeoue (string) optional timeout of session
+ * @return true
+ */ 
+function fsl_session_set($name,$value,$timeout = NULL){
+        $_SESSION[''.$name.'']  = fsl_encrypt($value);
+        $_SESSION[''.$name.'_timeout']  = time() + $timeout;
+        return true;
+}
 
 /*
- * fsl_session_valid
+ * fsl_session_check
  *
- * decrypts a string encrypted with fsl_encrypt function
- * remember to include full string with appended IV and the ':' seperator
- *
- * @string (string) String to be decrypted
- * @key (string) OPTIONAL encryption key to use. If not provided default
- *     key specified with option('global_encryption_key', 'setyourkeyhere') config
- * @return (string)
- */
+ * gets a session value and optionally resets a new value or timeout
+ * if session doesn't exist or timed out, then returns false, else returns value of session
+ * @name (string) Name of session
+ * @value (string) value of session
+ * @timeoue (string) optional timeout of session
+ * @return true
+ */ 
+function fsl_session_check($name,$value = NULL,$timeout = NULL){
+    if ((empty($_SESSION[''.$name.''] )) || ( (!empty($_SESSION[''.$name.'_timeout'])) &&  (time() > $_SESSION[''.$name.'_timeout'])) )
+    {
+      fsl_session_kill($name); //run kill session command
+    }
+    else
+    {
+      if(!empty($value)) $_SESSION[''.$name.'']  = fsl_encrypt($value);
+      if(!empty($timeout)) $_SESSION[''.$name.'_timeout']  = $timeout;
+    }
+
+      return fsl_decrypt($_SESSION[''.$name.'']);
+}
 
 /*
  * fsl_session_kill
  *
- * decrypts a string encrypted with fsl_encrypt function
- * remember to include full string with appended IV and the ':' seperator
+ * kills a session and associated timeout
+ * @name (string) Name of session
+ * returns true
+ */ 
+
+function fsl_session_kill($name){
+      unset($_SESSION[''.$name.'']);
+      unset($_SESSION[''.$name.'_timeout']);
+      session_destroy();
+      return true;
+}
+
+/*
+ * fsl_gauth_check
+ *
+ * checks if glogin session is set to 1 if not returns false
+ *
+ * @string (string) String to be decrypted
+ * @key (string) OPTIONAL encryption key to use. If not provided default
+ *     key specified with option('global_encryption_key', 'setyourkeyhere') config
+ * @return (string)
+ */
+
+function fsl_gauth_check(){
+    if ($_SESSION['glogin'] == 1)
+    {
+      return true;
+    }
+    else
+    {
+      return false;
+    }
+}
+
+
+/*
+ * fsl_gauth_getauthurl
+ *
+ * generates the auth url to use on google login button
+ *
+ * @string (string) String to be decrypted
+ * @key (string) OPTIONAL encryption key to use. If not provided default
+ *     key specified with option('global_encryption_key', 'setyourkeyhere') config
+ * @return (string)
+ */
+function fsl_gauth_getauthurl()
+	{
+	
+	$gClient = new Google_Client();
+  $gClient->setApplicationName('Login');
+  $gClient->setClientId(option('clientId'));
+  $gClient->setClientSecret(option('clientSecret'));
+  $gClient->setRedirectUri(option('redirectURL'));  
+	//	$gClient->setHd(option('hd')); 
+  $google_oauthV2 = new Google_Oauth2Service($gClient);
+  $authUrl = $gClient->createAuthUrl();
+  return $authUrl;
+}
+
+/*
+ * fsl_gauth_gettoken
+ *
+ * verify token from gauth is valid. If it is, returns array of google parameters
+ *
+ * @string (string) String to be decrypted
+ * @key (string) OPTIONAL encryption key to use. If not provided default
+ *     key specified with option('global_encryption_key', 'setyourkeyhere') config
+ * @return (string)
+ */
+ function fsl_gauth_gettoken()
+  {
+	$gClient = new Google_Client();
+  $gClient->setApplicationName('Login');
+  $gClient->setClientId(option('clientId'));
+  $gClient->setClientSecret(option('clientSecret'));
+  $gClient->setRedirectUri(option('redirectURL'));  
+	//		$gClient->setHd(option('hd'));
+  $google_oauthV2 = new Google_Oauth2Service($gClient);
+  
+    //google auth first
+  if(isset($_GET['code'])){
+	$gClient->authenticate($_GET['code']);
+	$_SESSION['token'] = $gClient->getAccessToken();
+	
+	header('Location: ' . filter_var($redirectURL, FILTER_SANITIZE_URL));
+  }
+
+  if (isset($_SESSION['token'])) {
+	$gClient->setAccessToken($_SESSION['token']);
+  }
+  //Call Google API
+
+  if ($gClient->getAccessToken()) {
+	//Get user profile data from google
+      $gpUserProfile = $google_oauthV2->userinfo->get();
+
+      /*  $gpUserData = array(
+            'oauth_provider'=> 'google',
+            'oauth_uid'     => $gpUserProfile['id'],
+            'first_name'    => $gpUserProfile['given_name'],
+            'last_name'     => $gpUserProfile['family_name'],
+            'email'         => $gpUserProfile['email'],
+            'gender'        => $gpUserProfile['gender'],
+            'locale'        => $gpUserProfile['locale'],
+            'picture'       => $gpUserProfile['picture'],
+            'link'          => $gpUserProfile['link']
+        ); */
+       // $userData = $user->checkUser($gpUserData);
+      //$output = $gpUserProfile['given_name'];
+      //$uemail = $gpUserProfile['email'];
+      $_SESSION['glogin'] =  1;
+
+      $uemail = substr(strrchr($uemail, "@"), 1);
+      if ($uemail == "konghq.com"){
+        header('Location: ' . option('base_uri') . 'home/');
+      }else {
+        header('Location: ' . option('base_uri') . 'logout/');
+      }
+      return $gpUserData;
+    
+  } else {
+	 
+	header('Location: ' . option('base_uri') . 'gauth/login/');
+  }
+}
+
+/*
+ * fsl_gauth_logout
+ *
+ * unsets google token and returns to base URL or URL of choice
  *
  * @string (string) String to be decrypted
  * @key (string) OPTIONAL encryption key to use. If not provided default
