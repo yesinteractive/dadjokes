@@ -105,9 +105,10 @@ function before($route)
 dispatch('/', 'hello_world');
   function hello_world()
   {
-    $_SESSION['crop'] = 'test';  
+  //  $_SESSION['crop'] = 'test';  
+    fsl_session_set('crop','My session data.');
     set_or_default('name', params('who'), "everybody");
- $mail = new PHPMailer(true);
+    //$mail = new PHPMailer(true);
     return html("<h1>Ahhhhhhh! It works.</h1>");
   }
   
@@ -116,10 +117,11 @@ dispatch('/showip/:what/:who', 'showip');
   {
     $ip = $_SERVER['REMOTE_ADDR'];
     set_or_default('name', params('who'), "everybody");
+
     //session data example
-   if (isset($_SESSION['crop'])) $session = $_SESSION['crop'];
-   else $session = "nada";
-     
+
+    $session = (empty(fsl_session_check('crop'))) ? "No session data." : fsl_session_check('crop');
+
     //Encryption Example
     $estring = fsl_encrypt("this is a test");
     $dstring = fsl_decrypt($estring);

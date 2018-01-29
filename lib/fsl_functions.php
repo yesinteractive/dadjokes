@@ -92,8 +92,9 @@ function fsl_scrub($string){
  * @return true
  */ 
 function fsl_session_set($name,$value,$timeout = NULL){
-        $_SESSION[''.$name.'']  = fsl_encrypt($value);
-        $_SESSION[''.$name.'_timeout']  = time() + $timeout;
+        $_SESSION[$name]  = fsl_encrypt($value);
+				if(!empty($timeout))  $_SESSION[$name.'_timeout'] = $timeout + time();
+		
         return true;
 }
 
@@ -108,17 +109,18 @@ function fsl_session_set($name,$value,$timeout = NULL){
  * @return true
  */ 
 function fsl_session_check($name,$value = NULL,$timeout = NULL){
-    if ((empty($_SESSION[''.$name.''] )) || ( (!empty($_SESSION[''.$name.'_timeout'])) &&  (time() > $_SESSION[''.$name.'_timeout'])) )
-    {
+    if ((empty($_SESSION[$name]  )) || ( (!empty( $_SESSION[$name.'_timeout'])) &&  (time() >  $_SESSION[$name.'_timeout'])) )
+    {  
       fsl_session_kill($name); //run kill session command
+			return false;
     }
     else
     {
-      if(!empty($value)) $_SESSION[''.$name.'']  = fsl_encrypt($value);
-      if(!empty($timeout)) $_SESSION[''.$name.'_timeout']  = $timeout;
+      if(!empty($value)) $_SESSION[$name]  = fsl_encrypt($value);
+      if(!empty($timeout))  $_SESSION[$name.'_timeout'] = $timeout;
     }
-
-      return fsl_decrypt($_SESSION[''.$name.'']);
+    
+      return fsl_decrypt($_SESSION[$name] );
 }
 
 /*
