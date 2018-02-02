@@ -114,11 +114,12 @@ function html_welcome($vars){ extract($vars);?>
 # custom error declaration
 ##############################################################################
 # 
-// Custom 404 error
-function not_found($errno, $errstr, $errfile, $errline){ 
+// Custom 404 error example
+/*function not_found($errno, $errstr, $errfile, $errline){ 
      
  echo "<center><img src=" . url_for('//_lim_public/img/404.gif') . " border=0><BR><BR>Your request for" . $errstr . " came up ghosts.</center>"  ;  
-}
+} 
+*/
 
 
 ?>
