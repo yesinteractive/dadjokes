@@ -40,25 +40,24 @@ function configure()
   #          return false;
   #      }
   # uncomment this section below if going to use a DB
-  /*
-    $host = 'localhost';
-    $db   = 'pdotest';
-    $user = 'root';
-    $pass = 'qwerty';
-    $charset = 'utf8mb4';
-    $dsn = "mysql:host=$host;dbname=$db;charset=$charset";
-    try
-    {
-       $db = new PDO($dsn, $user, $pass, $opt);
-    }
-    catch(PDOException $e)
-    {
-      halt("Connexion failed: ".$e); # raises an error / renders the error page and exit.
-    }
-    $db->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING );
-  option('db_conn', $db);
-  */
   
+/*       
+        option('db_host','localhost');
+        option('db_name','testdb');
+        option('db_username','root');
+        option('db_password','test');        
+        
+        try{
+            $obj_db = new PDO('mysql:host='.option("db_host").';dbname='.option("db_name").';charset=utf8mb4', option("db_username"), option("db_password"));
+            $obj_db->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING );
+            $GLOBALS['obj_db'] = $obj_db;
+
+        }catch(PDOException $e){
+            halt(SERVER_ERROR,"Connexion failed: ".$e); # raises an error / renders the error page and exit.
+          
+        }        
+        
+  */
  
 }
 

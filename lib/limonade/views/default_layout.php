@@ -6,9 +6,11 @@
 	<link rel="stylesheet" href="<?php echo url_for('/_lim_css/screen.css');?>" type="text/css" media="screen">
 </head>
 <body>
-	  <center>
+	 
   <div id="header">
-   <img src="<?php echo url_for('/_lim_public/img/fsl_logo.png') ?>" width=200px>
+  <h1>
+		Fresh Squeezed Limonade
+		</h1>
   </div>
 
   <div id="content">
@@ -18,6 +20,6 @@
       <hr class="space">
     </div>
   </div>
-</center>
+
 </body>
 </html>
