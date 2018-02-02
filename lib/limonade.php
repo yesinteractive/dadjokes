@@ -39,8 +39,12 @@
 #    FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR             #
 #    OTHER DEALINGS IN THE SOFTWARE.                                           #
 # ============================================================================ # 
-#    Additional Security alterations by Nick Rago (c) 2018                     #
+#    Additional contributions by Nick Rago (c) 2018				                     #
 # ============================================================================ # 
+
+## FSL Submodule Dependencies
+
+require_once('submodules/xssfilter/xss_filter.class.php');
 
 
 
@@ -59,7 +63,7 @@ define('LIM_START_MICROTIME',   microtime(true));
 define('LIM_SESSION_NAME',      'LIMONADE'.str_replace('.','x',LIMONADE));
 define('LIM_SESSION_FLASH_KEY', '_lim_flash_messages');
 if(function_exists('memory_get_usage'))
-	define('LIM_START_MEMORY',      memory_get_usage());
+define('LIM_START_MEMORY',      memory_get_usage());
 define('E_LIM_HTTP',            32768);
 define('E_LIM_PHP',             65536);
 define('E_LIM_DEPRECATED',      35000);
@@ -359,8 +363,9 @@ function run($env = null)
   option('x-sendfile',         0); // 0: disabled, 
                                    // X-SENDFILE: for Apache and Lighttpd v. >= 1.5,
                                    // X-LIGHTTPD-SEND-FILE: for Apache and Lighttpd v. < 1.5
-
-
+	option('config_dir',          file_path($root_dir, 'config'));
+	require_once_dir(option('config_dir'));
+//  require_once file_path($root_dir, 'config').  '/fsl_config.php';
   # 1. Set handlers
   # 1.1 Set error handling
   ini_set('display_errors', 1);

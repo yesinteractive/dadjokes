@@ -3,98 +3,33 @@
 #  requirements - must be included in your index.php
 ##############################################################################
 # 
-require_once __DIR__ . '/lib/vendor/autoload.php';
+
 require_once 'lib/limonade.php';
-use PHPMailer\PHPMailer\PHPMailer;
-use PHPMailer\PHPMailer\Exception;
+
 
 ##############################################################################
 #  configurations
 ##############################################################################
-# 
-
-function configure()
-{
-  option('env', ENV_DEVELOPMENT);
-  option('base_uri', "/gitprojects/limonade/"); //set if app is not in web root directory but in a subdirectory
-  //option('session', true); // enable
-  option('session', 'yellowlemons'); // enable with a specific session name
-  
-  //##############################################
-  //encryption configuration
-  option('global_encryption_key', 'setyourkeyhere'); // used in fsl_encrypt and fsl_decrypt
-  
-  //##############################################
-  //fsl configurations
-  option('fsl_session_length', 300); // session timeout in seconds, default is 300 seconds or 5 minutes. PHP default is typically 24 minute
-  
- 
- 
-  //reccommend a random key to use, for example openssl_random_pseudo_bytes(32) will generate a good one
-  
-  #Initiate a DB connection (using PDO)
-  #
-  #  Example PDO Usage for data models
-  #   function post_find_all()
-  #      {
-  #          $db = option('db_conn');
-  #          $sql = "SELECT * FROM posts ORDER BY modified_at DESC SQL;"
-  #          $result = array();
-  #          $stmt = $db->prepare($sql);
-  #          if ($stmt->execute())
-  #          {
-  #              return $stmt->fetchAll(PDO::FETCH_ASSOC);
-  #          }
-  #          return false;
-  #      }
-  # uncomment this section below if going to use a DB
-  /*
-    $host = 'localhost';
-    $db   = 'pdotest';
-    $user = 'root';
-    $pass = 'qwerty';
-    $charset = 'utf8mb4';
-    $dsn = "mysql:host=$host;dbname=$db;charset=$charset";
-    try
-    {
-       $db = new PDO($dsn, $user, $pass, $opt);
-    }
-    catch(PDOException $e)
-    {
-      halt("Connexion failed: ".$e); # raises an error / renders the error page and exit.
-    }
-    $db->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING );
-  option('db_conn', $db);
-  */
-  
- 
-}
-
-
-
-
-
+#  All in config directory
 
 ##############################################################################
 #  code to run before route execution
 ##############################################################################
 # 
 
-
 function before($route)
 {
   header("X-LIM-route-function: ".$route['callback']);
-  layout('html_my_layout');
- 
+  layout('fsl_default_layout.php');
 }
 
 ##############################################################################
-#  sample routes and controllers
+#  sample routes
 ##############################################################################
 # 
 #  routes and controllers
 # ----------------------------------------------------------------------------
-# RESTFul map:
+# Sample RESTFul map:
 #
 #  HTTP Method |  Url path         |  Controller function
 # -------------+-------------------+-------------------------------------------
@@ -103,95 +38,28 @@ function before($route)
 
 
 dispatch('/', 'hello_world');
-  function hello_world()
-  {
-  //  $_SESSION['crop'] = 'test';  
-    fsl_session_set('crop','My session data.');
-    set_or_default('name', params('who'), "everybody");
-    //$mail = new PHPMailer(true);
-    return html("<h1>Ahhhhhhh! It works.</h1>");
-  }
+
   
 dispatch('/showip/:what/:who', 'showip');
-  function showip()
-  {
-    $ip = $_SERVER['REMOTE_ADDR'];
-    set_or_default('name', params('who'), "everybody");
-
-    //session data example
-
-    $session = (empty(fsl_session_check('crop'))) ? "No session data." : fsl_session_check('crop');
-
-    //Encryption Example
-    $estring = fsl_encrypt("this is a test");
-    $dstring = fsl_decrypt($estring);
-    
-    
-    return html("IP of the client is $ip.<BR>Your session is $session. <BR><BR>Encrypt string is $estring<BR><BR>Decrypted is $dstring ");
-  }  
+   
   
 dispatch('/hello/:who', 'hello');
-  function hello()
-  {
-    set_or_default('name', params('who'), "everybody");
-    session_destroy();
-    return html("Hello %s!");
-  }
+ 
   
 dispatch('/welcome/:name', 'welcome');
-  function welcome()
-  {
-    set_or_default('name', params('name'), "everybody");    
-    return html("html_welcome");
-  }
+ 
 
 dispatch('/are_you_ok/:name', 'are_you_ok');
-  function are_you_ok($name = null)
-  {
-    if(is_null($name))
-    {
-      $name = params('name');
-      if(empty($name)) halt(NOT_FOUND, "Undefined name.");
-
-    }
-    set('name', $name);
-    return html("Are you ok $name ?");
-  }
+ 
     
 dispatch('/how_are_you/:name', 'how_are_you');
-  function how_are_you()
-  {
-    $name = params('name');
-    if(empty($name)) halt(NOT_FOUND, "Undefined name.");
-    # you can call an other controller function if you want
-    if(strlen($name) < 4) return are_you_ok($name);
-    set('name', $name);
-    return html("I hope you are fine, $name.");
-  }
+ 
   
 dispatch('/images/:name/:size', 'image_show');
-  function image_show()
-  {
-    $ext = file_extension(params('name'));
-    $filename = option('public_dir')."/".basename(params('name'), ".$ext");
-    if(params('size') == 'thumb') $filename .= ".thb";
-    $filename .= '.jpg';
  
-    if(!file_exists($filename)) halt(NOT_FOUND, "$filename doesn't exists");
-    render_file($filename);
-  }
 
 dispatch('/*.jpg/:size', 'image_show_jpeg_only');
-  function image_show_jpeg_only()
-  {
-    $ext = file_extension(params(0));
-    $filename = option('public_dir').params(0);
-    if(params('size') == 'thumb') $filename .= ".thb";
-    $filename .= '.jpg';
-  
-    if(!file_exists($filename)) halt(NOT_FOUND, "$filename doesn't exists");
-    render_file($filename);
-  }
+ 
 
 ##############################################################################
 #  run after function
@@ -215,70 +83,24 @@ run();
 ##############################################################################
 #  Data Models
 ##############################################################################
-# 
+#  
 
 ##############################################################################
 #  layouts (views) and html templates
 ##############################################################################
-# 
+#  Layouts are autoloaded from views directory or can be referended
+#  as a function like below.
 
 function html_my_layout($vars){ extract($vars);?> 
 
-
 <!doctype html>
 <html lang="en">
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="<?php echo option('base_uri'); ?>/public/css/bootstrap.min.css" integrity="sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13dy" crossorigin="anonymous">
-
-    <title>Hello, world!</title>
-    <style css>
-      .navbar-custom {
-          background-color: #dddddd;
-       }
-    </style>
-  </head>
   <body>
-  <nav class="navbar navbar-light navbar-custom ">
-  <a class="navbar-brand" href="#">
-       <img src="<?php echo url_for('/public/fsl_logo.png')?>" class="img-responsive d-inline-block align-top" alt="Responsive image" style="max-height: 75px;">
-
-  </a>
-      <span class="navbar-text">
-    FSL: A refreshing PHP framework
-  </span>
-</nav>  
-    
-   
-  <div class="container">
-   
-    <BR>
-    
-    <?php echo $content ?>
-      <BR><BR>
-        <img src="<?php echo url_for('/public/fsl.jpeg')?>"> <hr>
-    <a href="<?php echo url_for('/')?>">Home - Start Session</a> |
-    <a href="<?php echo url_for('/showip/', $name)?>">Show IP - Show Session</a> | 
-    <a href="<?php echo url_for('/hello/', $name)?>">Hello - Kill Session</a> | 
-    <a href="<?php echo url_for('/welcome/', $name)?>">Welcome !</a> | 
-    <a href="<?php echo url_for('/are_you_ok/', $name)?>">Are you ok ?</a> | 
-    <a href="<?php echo url_for('/how_are_you/', $name)?>">How are you ?</a>
-
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="<?php echo option('base_uri'); ?>/public/js/bootstrap.min.js" integrity="sha384-a5N7Y/aK3qNeh15eJKGWxsqtnX/wWdSZSKp+81YjTmS15nvnvxKHuzaWwXHDli+4" crossorigin="anonymous"></script>
-  </div> <!-- container end -->
+    Hello world!
   </body>
 </html>
 
-
-<?php }
+<?php  }
 
 function html_welcome($vars){ extract($vars);?> 
 <h3>Hello <?php echo $name?>!</h3>
@@ -286,8 +108,12 @@ function html_welcome($vars){ extract($vars);?>
 <hr>
 <p><a href="<?php echo url_for('/images/soda_glass.jpg')?>">
    <img src="<?php echo url_for('/images/soda_glass.jpg/thumb')?>"></a></p>
-<?php }   
+<?php }  
 
+##############################################################################
+# custom error declaration
+##############################################################################
+# 
 // Custom 404 error
 function not_found($errno, $errstr, $errfile, $errline){ 
      

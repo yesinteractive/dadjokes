@@ -1,5 +1,9 @@
 <?php
-
+/* 
+ * Helper functions written for FSL Micro Framework
+ * Author: NRago
+ *
+ */
 
 
 /* 
