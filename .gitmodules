@@ -4,3 +4,6 @@
 [submodule "lib/submodules/phpmailer"]
 	path = lib/submodules/phpmailer
 	url = git://github.com/PHPMailer/PHPMailer.git
+[submodule "lib/submodules/guzzle"]
+	path = lib/submodules/guzzle
+	url = git://github.com/guzzle/guzzle.git

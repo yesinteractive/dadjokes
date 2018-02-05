@@ -6,8 +6,7 @@ function configure()
 {
   option('env', ENV_DEVELOPMENT);
   option('base_uri', "/gitprojects/limonade/"); //set if app is not in web root directory but in a subdirectory
-  //option('session', true); // enable
-  option('session', 'yellowlemons'); // enable with a specific session name
+  option('session', 'fsl'); // enable with a specific session name
   
   //##############################################
   //encryption configuration
