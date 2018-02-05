@@ -1,6 +1,6 @@
 <?php
 
-//Config file
+//Config file for FSL
 
 function configure()
 {
