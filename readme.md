@@ -1,7 +1,7 @@
 # FSL: Fresh Squeezed Limonade: README
 
 FSL (Fresh Squeezed Limonade) is Yes Interactive's continuation and adaptation of the abandonded Limonade PHP micro framework project (https://github.com/sofadesign/limonade)
-originally created by Fabrice Luraine. Below is the original README from Limonade for reference. Check back frequently for updates
+originally created by Fabrice Luraine. Below is the original README from Limonade for reference. Check back frequently for updates.
 
 ## FSL Installation ##
 
@@ -9,7 +9,8 @@ originally created by Fabrice Luraine. Below is the original README from Limonad
 2. Verify that the directory FSL is placed in on your webserver has the AllowOverride directive set to ALL (AllowOverride All) in the Apache <Directory> configuration.
    If this is not set then the included .htaccess file will not be read and routes will not be execute correctly.
 3. Update the RewriteBase directive in the included .htaccess file to accomodate your app if it is installed in a web sub directory (not root)
-4. The code comes with an example app with several routes and examples of the flexibilty of the framework.
+4. Note that the XSS Filter Submodule in Git is a required module for secuirty enhancements. Other useful submodules are referenced for future use as the FSL function library expands over time.
+5. The code comes with an example app with several routes and examples of the flexibilty of the framework.
 
 ## Why FSL ##
 
