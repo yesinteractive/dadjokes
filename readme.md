@@ -3,7 +3,7 @@
 ## FSL: Fresh Squeezed Limonade PHP Micro-Framework README
 
 FSL (Fresh Squeezed Limonade) is Yes Interactive's continuation and adaptation of the abandonded Limonade PHP micro framework project (https://github.com/sofadesign/limonade)
-originally created by Fabrice Luraine. Below is the original README from Limonade for reference. Check back frequently for updates.
+originally created by Fabrice Luraine. FSL is extremely lightweight and flexible, which provides a great rapid development framework for Web apps, REST API's and Microservices.  FSL based apps work great in containerized application environments such as Docker, K8s, Openshift, and more.
 
 ## FSL Installation ##
 
@@ -18,7 +18,7 @@ originally created by Fabrice Luraine. Below is the original README from Limonad
 
 Controller callbacks can be a function, an object method, a static method or a closure. See php documentation to learn more about the callback pseudo-type. This 
 flexibility gives developers free range to develop class or classless based apps MVC based applications or more simpler, less structured, functional based applications. This flexibility I find is very useful
-for rapid development of REST based applications.
+for rapid development of REST based applications and rapid development of microservices.
 
 Enjoy!
 
