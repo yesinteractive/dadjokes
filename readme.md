@@ -1,4 +1,6 @@
-# FSL: Fresh Squeezed Limonade: README
+![alt text](https://github.com/yesinteractive/fsl/blob/master/public/fsl_logo.png)
+
+## FSL: Fresh Squeezed Limonade PHP Micro-Framework README
 
 FSL (Fresh Squeezed Limonade) is Yes Interactive's continuation and adaptation of the abandonded Limonade PHP micro framework project (https://github.com/sofadesign/limonade)
 originally created by Fabrice Luraine. Below is the original README from Limonade for reference. Check back frequently for updates.
