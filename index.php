@@ -36,9 +36,10 @@ function before($route)
 #   GET        |  /                |  hello_world
 
 
-
+//basic hello world
 dispatch('/', 'hello_world');
 
+//example showing a json REST response
 dispatch('/api', 'api');
 
   
@@ -71,11 +72,17 @@ dispatch('/*.jpg/:size', 'image_show_jpeg_only');
   
 function after($output, $route)
 {
+  // Uncomment to show request params and response timing
+  // Helpful for debuggin
+  /*
   $time = number_format( microtime(true) - LIM_START_MICROTIME, 6);
   $output .= "\n<!-- page rendered in $time sec., on ".date(DATE_RFC822)." -->\n";
   $output .= "<!-- for route\n";
   $output .= print_r($route, true);
   $output .= "-->";
+  
+  */
+  
   return $output;
 }
 

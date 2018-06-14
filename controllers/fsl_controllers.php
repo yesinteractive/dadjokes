@@ -9,10 +9,16 @@
     return html("<h1>Ahhhhhhh! It works.</h1>");
   }
 
+/*
+*
+* This is an example on how to make a RESTful JSON Response and Set A Status Code
+*
+*/
+
   function api()
   {
-    
     $arr = array('a' => 1, 'b' => 2, 'c' => 3, 'd' => 4, 'e' => 5);
+    status(202); //returns HTTP status code of 202
     return json($arr);
   }
 

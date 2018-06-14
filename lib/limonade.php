@@ -1,22 +1,18 @@
 <?php
 
 # ============================================================================ #
-
 /**
- *  L I M O N A D E
- * 
- *  a PHP micro framework.
- * 
- *  For more informations: {@link https://github.com/sofadesign/limonade}
+ *  FSL: Fresh Squeezed Limonade PHP Micro Framework
+ *  For more informations: {@link https://github.com/yesinteractive/fsl}
  *  
- *  @author Fabrice Luraine
- *  @copyright Copyright (c) 2009 Fabrice Luraine
+ *  @author Yes Interactive
+ *  @copyright Copyright (c) 2018 Yes Interactive
  *  @license http://opensource.org/licenses/mit-license.php The MIT License
- *  @package limonade
+ *  @package fsl
  */
 
 #   -----------------------------------------------------------------------    #
-#    Copyright (c) 2009 Fabrice Luraine                                        #
+#    Copyright (c) 2018 Yes Interactive                                        #
 #                                                                              #
 #    Permission is hereby granted, free of charge, to any person               #
 #    obtaining a copy of this software and associated documentation            #
@@ -39,11 +35,26 @@
 #    FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR             #
 #    OTHER DEALINGS IN THE SOFTWARE.                                           #
 # ============================================================================ # 
-#    Additional contributions by Nick Rago (c) 2018				                     #
-# ============================================================================ # 
+# See LICENSE.3RDPARTY for other Open Source Credits and Licenses utilized by FSL
+# 
+# FSL is an extension of the Limonade Framework built by Fabrice Luraine
+/**
+ *  L I M O N A D E
+ * 
+ *  a PHP micro framework.
+ * 
+ *  For more informations: {@link https://github.com/sofadesign/limonade}
+ *  
+ *  @author Fabrice Luraine
+ *  @copyright Copyright (c) 2009 Fabrice Luraine
+ *  @license http://opensource.org/licenses/mit-license.php The MIT License
+ *  @package limonade
+ *  See LICENSE.3RDPARTY for full License
+ */
+
+
 
 ## FSL Submodule Dependencies
-
 
 # ============================================================================ #
 #    0. PREPARE                                                                #
@@ -133,7 +144,6 @@ ini_set('display_errors', 0);
 # D. Strip XSS threats  where needed
 #   Added by Nick Rago 2018/01/11
 #   XSS Filter added to request_uri function
-#   xss_filter.class.php library added  to lib folder
 #   https://github.com/JBlond/PHP-XSS-Filter
 #    Example of usage:
 #    $xss = new xss_filter();
@@ -744,7 +754,7 @@ function error_not_found_output($errno, $errstr, $errfile, $errline)
        $html = render('error.html.php', null, $args);
 
            
-      return html("<h1>Page not found:</h1><p><code>{$msg}</code></p>", error_layout());
+      return html("<h1>Page is not found:</h1><p><code>{$msg}</code></p>", error_layout());
     }
   }
   return not_found($errno, $errstr, $errfile, $errline);
@@ -1121,7 +1131,7 @@ function request_uri($env = null)
     $uri = '/' . $uri; # add a leading slash
   }
   //return rawurldecode($uri);
-  // XSS Protection  - NRago
+  // XSS Protection  - FSL
   
     $xss = new xss_filter();
     return $xss->filter_it(rawurldecode($uri) );
