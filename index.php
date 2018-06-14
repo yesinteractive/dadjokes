@@ -39,6 +39,8 @@ function before($route)
 
 dispatch('/', 'hello_world');
 
+dispatch('/api', 'api');
+
   
 dispatch('/showip/:what/:who', 'showip');
    

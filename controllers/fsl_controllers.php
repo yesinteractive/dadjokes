@@ -9,6 +9,14 @@
     return html("<h1>Ahhhhhhh! It works.</h1>");
   }
 
+  function api()
+  {
+    
+    $arr = array('a' => 1, 'b' => 2, 'c' => 3, 'd' => 4, 'e' => 5);
+    return json($arr);
+  }
+
+
 function showip()
   {
     $ip = $_SERVER['REMOTE_ADDR'];
