@@ -44,10 +44,6 @@
 
 ## FSL Submodule Dependencies
 
-require_once('submodules/xssfilter/xss_filter.class.php');
-
-
-
 
 # ============================================================================ #
 #    0. PREPARE                                                                #

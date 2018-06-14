@@ -1,10 +1,13 @@
 <?php
 /**
 * xss_filter
-*
+* https://github.com/JBlond/PHP-XSS-Filter
+* version: 232bbb570e36c5d31391210fdb3011e729a98637
 * @author mario.brandt
 * @copyright Copyright (c) 2013 - 2017
 * @access public
+*
+* Altered for FSL by Yes Interactive
  */
 class xss_filter {
 
