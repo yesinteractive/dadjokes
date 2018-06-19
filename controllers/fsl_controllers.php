@@ -2,11 +2,27 @@
 
   function hello_world()
   {
-  //  $_SESSION['crop'] = 'test';  
+    
     fsl_session_set('crop','My session data.');
     set_or_default('name', params('who'), "everybody");
-    //$mail = new PHPMailer(true);
+
     return html("<h1>Ahhhhhhh! It works.</h1>");
+  }
+
+/*
+*
+* This is an example on how to create and decode JWT Tokens
+*
+*/
+
+  function jwt()
+  {
+   $token = array();
+   $token['id'] = "test123";
+   $testjwt =  fsl_jwt_encode($token, "testkey");
+   $jwtdecode = fsl_jwt_decode($testjwt,"testkey");
+
+    return html("JWT: $testjwt<BR>Decoded JWT: " . $jwtdecode->id);
   }
 
 /*
@@ -37,6 +53,7 @@ function showip()
     $dstring = fsl_decrypt($estring);
     
     
+  
     return html("IP of the client is $ip.<BR>Your session is $session. <BR><BR>Encrypt string is $estring<BR><BR>Decrypted is $dstring ");
   } 
 

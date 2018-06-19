@@ -42,6 +42,9 @@ dispatch('/', 'hello_world');
 //example showing a json REST response
 dispatch('/api', 'api');
 
+//example showing JWT usage
+dispatch('/jwt', 'jwt');
+
   
 dispatch('/showip/:what/:who', 'showip');
    

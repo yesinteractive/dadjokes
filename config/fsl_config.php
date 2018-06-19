@@ -19,8 +19,11 @@ function configure()
   
   option('fsl_session_length', 300); // session timeout in seconds, default is 300 seconds or 5 minutes. PHP default is typically 24 minute
   
- 
- 
+  
+  
+  #######################################################################
+  #Database Connections
+  ######################################################################
 
   
   #Initiate a DB connection (using PDO)
@@ -38,7 +41,7 @@ function configure()
   #          }
   #          return false;
   #      }
-  # uncomment this section below if going to use a DB
+  # uncomment this section below if going to use a DB using PDO
   
 /*       
         option('db_host','localhost');

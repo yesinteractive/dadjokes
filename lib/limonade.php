@@ -357,6 +357,7 @@ function run($env = null)
   option('views_dir',          file_path($root_dir, 'views'));
   option('controllers_dir',    file_path($root_dir, 'controllers'));
   option('lib_dir',            file_path($root_dir, 'lib'));
+  option('3rd_party',           file_path($root_dir, 'lib/3rd_party_helpers')); //reference to FSL third party helpers
   option('error_views_dir',    option('limonade_views_dir'));
   option('base_path',          $base_path);
   option('base_uri',           $base_uri); // set it manually if you use url_rewriting
@@ -394,6 +395,7 @@ function run($env = null)
 
   # 3. Loading libs
   require_once_dir(option('lib_dir'));
+  require_once_dir(option('3rd_party')); //load 3rd party FSL libraries
   fallbacks_for_not_implemented_functions();
 
   # 4. Starting session

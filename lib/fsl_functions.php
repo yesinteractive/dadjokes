@@ -142,6 +142,38 @@ function fsl_session_kill($name){
       return true;
 }
 
+/* 
+ *
+ * fsl_jwt_encode
+ *
+ * creates a JWT Token
+ *
+ * @array (array) Array to be encoded in JWT
+ * @key (string) OPTIONAL encryption key to use. If not provided default
+ *     key specified with option('global_encryption_key', 'setyourkeyhere') config
+ * @return (string)
+ */
+function fsl_jwt_encode($array,$key)
+{
+  return JWT::encode($array, $key);
+}
+
+/* 
+ *
+ * fsl_jwt_decode
+ *
+ * Decodes and validates a JWT Token and key combination
+ *
+ * @token (string) JWT to be decoded
+ * @key (string) OPTIONAL encryption key to use. If not provided default
+ *     key specified with option('global_encryption_key', 'setyourkeyhere') config
+ * @return (array) or error if validations fails
+ */
+function fsl_jwt_decode($token,$key)
+{
+  return JWT::decode($token, $key);
+}
+
 /*
  * fsl_gauth_check
  *
@@ -266,4 +298,8 @@ function fsl_gauth_getauthurl()
  *     key specified with option('global_encryption_key', 'setyourkeyhere') config
  * @return (string)
  */
+
+
+
+
 ?>
