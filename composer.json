@@ -6,10 +6,6 @@
      "require": {
         "php": ">=5.5"
     },
-    "require-dev": {
-        "ext-mcrypt": "*",
-        "ext-curl": "*"
-    },
     "license": "MIT",
     "authors": [
         {
