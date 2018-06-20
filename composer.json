@@ -1,10 +1,12 @@
 {
     "name": "fsl/fsl",
     "description": "Fresh Squeezed Limonade (FSL): a PHP micro-framework for rapid development of Microservices and REST API's and Web Apps",
+    "Version":"1.01",
     "keywords": ["framework","micro","api","router","microservices","docker","php"],
     "homepage": "https://github.com/yesinteractive/fsl",
      "require": {
-        "php": ">=5.5"
+        "php": ">=5.5",
+        "fsl/fsl": "*"
     },
     "license": "MIT",
     "authors": [
