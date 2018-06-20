@@ -11,7 +11,7 @@ originally created by Fabrice Luraine. FSL is extremely lightweight and flexible
 2. Verify that the directory FSL is placed in on your webserver has the AllowOverride directive set to ALL (AllowOverride All) in the Apache <Directory> configuration.
    If this is not set then the included .htaccess file will not be read and routes will not be execute correctly.
 3. Update the RewriteBase directive in the included .htaccess file to accomodate your app if it is installed in a web sub directory (not root)
-4. Note that the XSS Filter Submodule in Git is a required module for secuirty enhancements. Other useful submodules are referenced for future use as the FSL function library expands over time.
+4. Edit the /config/fsl_config.php file to suit your needs. Be sure to set the correct Base URI where FSL is installed.
 5. The code comes with an example app with several routes and examples of the flexibilty of the framework.
 
 ## Why FSL ##
@@ -19,6 +19,11 @@ originally created by Fabrice Luraine. FSL is extremely lightweight and flexible
 Controller callbacks can be a function, an object method, a static method or a closure. See php documentation to learn more about the callback pseudo-type. This 
 flexibility gives developers free range to develop class or classless based apps MVC based applications or more simpler, less structured, functional based applications. This flexibility I find is very useful
 for rapid development of REST based applications and rapid development of microservices.
+
+## FSL Extension of Limonade ##
+See /controllers/fsl_controllers.php for a list of provided FSL functions that extend the Limonade framework (sessions management, JWT tokens, encryption, etc.)
+
+FSL provides additional security to deal with XSS and other threats that were not addressed in the original Limonade framework.
 
 Enjoy!
 
