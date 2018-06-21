@@ -17,7 +17,7 @@ $ composer require fsl/fsl "~0.1"
 You can also install FSL by referencing it in your project's `composer.json`:
 
 ```json
-"phpmailer/phpmailer": "~6.0"
+"fsl/fsl": "~0.1"
 ```
 
 
@@ -45,10 +45,10 @@ require 'lib/limonade.php';
 
 ### Getting Up and Running ###
 
+
 1. Once files are in place on web server, make sure to have URL rewriting enabled in Apache. 
-2. Verify that the directory FSL is placed in on your webserver has the AllowOverride directive set to ALL (AllowOverride All) in the Apache <Directory> configuration.
-   If this is not set then the included .htaccess file will not be read and routes will not be execute correctly.
-3. Update the RewriteBase directive in the included .htaccess file to accomodate your app if it is installed in a web sub directory (not root)
+2. Verify that the directory FSL is placed in on your webserver has the AllowOverride directive set to `ALL (AllowOverride All)` in the Apache `<Directory>` configuration. If this is not set then the included `.htaccess` file will not be read and routes will not be execute correctly.
+3. Update the RewriteBase directive in the included `.htaccess` file to accomodate your app if it is installed in a web sub directory (not root)
 4. Edit the /config/fsl_config.php file to suit your needs. IMPORTANT: Be sure to set the correct Base URI where FSL is installed.
 5. The code comes with an example app (index.php) with several route and countroller (/controllers/fsl_controllers.php) examples to demonstrate the flexibilty of the framework.
 
@@ -78,7 +78,7 @@ Limonade provides functions that complete the PHP basic set, while keeping consi
 Limonade is easy to learn and provides everything that you can expect from a modern framework (MVC, REST, ...)
 
 
-
+```php
     require_once 'lib/limonade.php';
     dispatch('/', 'hello');
         function hello()
@@ -86,6 +86,7 @@ Limonade is easy to learn and provides everything that you can expect from a mod
             return 'Hello world!';
         }
     run();
+```    
 
 ## About this document ##
 
@@ -108,7 +109,7 @@ Routes combine
 * and a callback parameter
 
 So they make the glue between an URL + a HTTP method, and the code provided in a callback controller.
-
+```php
     dispatch('/', 'my_get_function');
     # same as dispatch_get('my_get_function');
         function my_get_function()
@@ -140,7 +141,7 @@ So they make the glue between an URL + a HTTP method, and the code provided in a
         {
             // Patch something
         }
-
+```
 
 Routes are matched in the order they are declared.
 The search is performed with a path given through browser URL:
@@ -151,12 +152,13 @@ The search is performed with a path given through browser URL:
     http://localhost/my_app/?/my/path
 
 When `PUT`,`DELETE` or `PATCH` methods are not supported (like in HTML form submision), you can use the `_method` parameter in `POST` requests: it will override the `POST` method.
-
+```html
     <form action="<?php echo url_for('profile_update'); ?>" method="post">
         <p><input type="hidden" name="_method" value="PUT" id="_method"></p>
         <p>... your form fields</p>
         <p><input type="submit" value="Update"></p>
     </form>
+```    
 
 ### Routing patterns and parameters ###
 
