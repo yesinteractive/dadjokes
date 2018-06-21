@@ -39,7 +39,7 @@ If not using Composer, just download the FSL files in your web directory and be 
 ```php
 <?php
 
-require 'lib/limonade.php';
+require 'lib/fsl.php';
 
 ```
 

@@ -15,7 +15,7 @@
         }
     ],
     "autoload": {
-        "files": ["lib/limonade.php"]
+        "files": ["lib/fsl.php"]
     },
     "minimum-stability": "dev"
 }
