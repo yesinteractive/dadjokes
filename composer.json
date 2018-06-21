@@ -4,7 +4,7 @@
     "keywords": ["framework","micro","api","router","microservices","docker","php"],
     "homepage": "https://github.com/yesinteractive/fsl",
      "require": {
-        "php": ">=5.2",
+        "php": ">=5.5",
         "fsl/fsl": "*"
     },
     "license": "MIT",
@@ -17,6 +17,5 @@
     "autoload": {
         "files": ["lib/limonade.php"]
     },
-    "minimum-stability": "dev",
-    "prefer-stable": true
+    "minimum-stability": "dev"
 }

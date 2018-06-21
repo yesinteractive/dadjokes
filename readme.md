@@ -7,21 +7,59 @@ originally created by Fabrice Luraine. FSL is extremely lightweight and flexible
 
 ## FSL Installation ##
 
+### With Composer ###
+
+It's recommended that you use [Composer](https://getcomposer.org/) to install FSL. Navigate into your project’s root directory and execute the bash command shown below. This command downloads the FSL Framework and its third-party dependencies into your project’s vendor/ directory.
+
+```bash
+$ composer require fsl/fsl "~0.1"
+```
+You can also install FSL by referencing it in your project's `composer.json`:
+
+```json
+"phpmailer/phpmailer": "~6.0"
+```
+
+
+This will install FSL and all required dependencies. FSL requires PHP 5.5.0 or newer.
+
+Require the Composer autoloader into your PHP script, and you are ready to start using Slim.
+
+```php
+<?php
+
+require 'vendor/autoload.php';
+
+```
+
+### Without Composer ###
+
+If not using Composer, just download the FSL files in your web directory and be sure to include the FSL main library file:
+
+```php
+<?php
+
+require 'lib/limonade.php';
+
+```
+
+### Getting Up and Running ###
+
 1. Once files are in place on web server, make sure to have URL rewriting enabled in Apache. 
 2. Verify that the directory FSL is placed in on your webserver has the AllowOverride directive set to ALL (AllowOverride All) in the Apache <Directory> configuration.
    If this is not set then the included .htaccess file will not be read and routes will not be execute correctly.
 3. Update the RewriteBase directive in the included .htaccess file to accomodate your app if it is installed in a web sub directory (not root)
-4. Edit the /config/fsl_config.php file to suit your needs. Be sure to set the correct Base URI where FSL is installed.
-5. The code comes with an example app with several routes and examples of the flexibilty of the framework.
+4. Edit the /config/fsl_config.php file to suit your needs. IMPORTANT: Be sure to set the correct Base URI where FSL is installed.
+5. The code comes with an example app (index.php) with several route and countroller (/controllers/fsl_controllers.php) examples to demonstrate the flexibilty of the framework.
 
-## Why FSL ##
+## Why FSL ## 
 
 Controller callbacks can be a function, an object method, a static method or a closure. See php documentation to learn more about the callback pseudo-type. This 
 flexibility gives developers free range to develop class or classless based apps MVC based applications or more simpler, less structured, functional based applications. This flexibility I find is very useful
 for rapid development of REST based applications and rapid development of microservices.
 
 ## FSL Extension of Limonade ##
-See /controllers/fsl_controllers.php for a list of provided FSL functions that extend the Limonade framework (sessions management, JWT tokens, encryption, etc.)
+See /lib/fsl_functions.php for a list of provided FSL functions that extend the Limonade framework (sessions management, JWT tokens, encryption, etc.)
 
 FSL provides additional security to deal with XSS and other threats that were not addressed in the original Limonade framework.
 
