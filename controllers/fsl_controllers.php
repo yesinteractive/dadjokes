@@ -6,7 +6,7 @@
     fsl_session_set('crop','My session data.');
     set_or_default('name', params('who'), "everybody");
 
-    return html("<h1>Ahhhhhhh! It works.</h1>");
+    return html("<center><h1>Ahhhhhhh! It works.</h1></center>");
   }
 
 /*

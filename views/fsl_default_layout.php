@@ -33,7 +33,7 @@
     
     <?php echo $content ?>
       <BR><BR>
-        <img src="<?php echo url_for('/public/fsl.jpeg')?>"> <hr>
+        <center><img src="<?php echo url_for('/public/fsl.jpeg')?>"></center> <hr>
     <a href="<?php echo url_for('/')?>">Home - Start Session</a> |
     <a href="<?php echo url_for('/showip/', $name)?>">Show IP - Show Session</a> | 
     <a href="<?php echo url_for('/hello/', $name)?>">Hello - Kill Session</a> | 
