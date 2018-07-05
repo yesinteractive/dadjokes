@@ -1,9 +1,22 @@
+## FSL: Fresh Squeezed Limonade PHP Micro-Framework
+
+FSL (Fresh Squeezed Limonade) is Yes Interactive's renergized continuation and adaptation of the abandonded Limonade PHP micro framework project (https://github.com/sofadesign/limonade)
+originally created by Fabrice Luraine. FSL is extremely lightweight and flexible, which provides a great rapid development framework for Web apps, REST API's and Microservices.  FSL based apps work great in containerized application environments such as Docker, K8s, Openshift, and more.
+
 ![alt text](https://github.com/yesinteractive/fsl/blob/master/public/fsl_logo.png)
 
-## FSL: Fresh Squeezed Limonade PHP Micro-Framework README
+### Why use FSL? ### 
 
-FSL (Fresh Squeezed Limonade) is Yes Interactive's continuation and adaptation of the abandonded Limonade PHP micro framework project (https://github.com/sofadesign/limonade)
-originally created by Fabrice Luraine. FSL is extremely lightweight and flexible, which provides a great rapid development framework for Web apps, REST API's and Microservices.  FSL based apps work great in containerized application environments such as Docker, K8s, Openshift, and more.
+Controller callbacks can be a function, an object method, a static method or a closure. See php documentation to learn more about the callback pseudo-type. This 
+flexibility gives developers free range to develop class or classless based apps MVC based applications or more simpler, less structured, functional based applications. This flexibility I find is very useful
+for rapid development of REST based applications and rapid development of microservices.
+
+### FSL Extension of Limonade ###
+See /lib/fsl_functions.php for a list of provided FSL functions that extend the Limonade framework (sessions management, JWT tokens, encryption, etc.)
+
+FSL provides additional security to deal with XSS and other threats that were not addressed in the original Limonade framework.
+
+Enjoy!
 
 ## FSL Installation ##
 
@@ -52,18 +65,7 @@ require 'lib/fsl.php';
 4. Edit the /config/fsl_config.php file to suit your needs. IMPORTANT: Be sure to set the correct Base URI where FSL is installed.
 5. The code comes with an example app (index.php) with several route and countroller (/controllers/fsl_controllers.php) examples to demonstrate the flexibilty of the framework.
 
-## Why FSL ## 
 
-Controller callbacks can be a function, an object method, a static method or a closure. See php documentation to learn more about the callback pseudo-type. This 
-flexibility gives developers free range to develop class or classless based apps MVC based applications or more simpler, less structured, functional based applications. This flexibility I find is very useful
-for rapid development of REST based applications and rapid development of microservices.
-
-## FSL Extension of Limonade ##
-See /lib/fsl_functions.php for a list of provided FSL functions that extend the Limonade framework (sessions management, JWT tokens, encryption, etc.)
-
-FSL provides additional security to deal with XSS and other threats that were not addressed in the original Limonade framework.
-
-Enjoy!
 
 #########################
 
