@@ -1,9 +1,17 @@
-## FSL: Fresh Squeezed Limonade PHP Micro-Framework [![Tweet](https://img.shields.io/twitter/url/http/shields.io.svg?style=social)](https://twitter.com/intent/tweet?text=FSL:%20Fresh%20Squeezed%20Limonade%20PHP%20Micro-Framework%20for%20Micro-Services%20and%20Rapid%20API%20Development&url=https://github.com/yesinteractive/fsl&hashtags=php,microservices,microframework,webapps,github,developers,webdevelopment,docker)
+## FSL: Fresh Squeezed Limonade PHP Micro-Framework
+
+
+[![GitHub release](https://img.shields.io/github/release/yesinteractive/fsl.svg)](https://github.com/yesinteractive/fsl) 
+![Packagist](https://img.shields.io/packagist/l/fsl/fsl.svg) ![PHP from Packagist](https://img.shields.io/packagist/php-v/fsl/fsl.svg)
+  [![Tweet](https://img.shields.io/twitter/url/http/shields.io.svg?style=social)](https://twitter.com/intent/tweet?text=FSL:%20Fresh%20Squeezed%20Limonade%20PHP%20Micro-Framework%20for%20Micro-Services%20and%20Rapid%20API%20Development&url=https://github.com/yesinteractive/fsl&hashtags=php,microservices,microframework,webapps,github,developers,webdevelopment,docker)
+
+
+
 
 FSL (Fresh Squeezed Limonade) is Yes Interactive's renergized continuation and adaptation of the abandonded Limonade PHP micro framework project (https://github.com/sofadesign/limonade)
 originally created by Fabrice Luraine. FSL is extremely lightweight and flexible, which provides a great rapid development framework for Web apps, REST API's and Microservices.  FSL based apps work great in containerized application environments such as Docker, K8s, Openshift, and more.
 
-![alt text](https://github.com/yesinteractive/fsl/blob/master/public/fsl_logo.png)
+![alt text](https://github.com/yesinteractive/fsl/blob/master/public/fsl_logo.png "FSL Fresh Squeezed Limonade PHP Microframework")
 
 ### Why use FSL? ### 
 
@@ -25,12 +33,12 @@ Enjoy!
 It's recommended that you use [Composer](https://getcomposer.org/) to install FSL. Navigate into your project’s root directory and execute the bash command shown below. This command downloads the FSL Framework and its third-party dependencies into your project’s vendor/ directory.
 
 ```bash
-$ composer require fsl/fsl "~0.1"
+$ composer require fsl/fsl 
 ```
 You can also install FSL by referencing it in your project's `composer.json`:
 
 ```json
-"fsl/fsl": "~0.1"
+"fsl/fsl":">0.1"
 ```
 
 
@@ -64,12 +72,15 @@ require 'lib/fsl.php';
 3. Update the RewriteBase directive in the included `.htaccess` file to accomodate your app if it is installed in a web sub directory (not root)
 4. Edit the /config/fsl_config.php file to suit your needs. IMPORTANT: Be sure to set the correct Base URI where FSL is installed.
 5. The code comes with an example app (index.php) with several route and countroller (/controllers/fsl_controllers.php) examples to demonstrate the flexibilty of the framework.
+6. Once configured, browser to the index.php where you installed FSL and you should see the following:
+![alt text](https://github.com/yesinteractive/fsl/blob/master/public/itworks.png "FSL Fresh Squeezed Limonade PHP Microframework Landing Page")
 
 
 
-#########################
 
-# Limonade: README
+---
+
+# Original Limonade README
 
 Limonade is a PHP micro framework for rapid web development and prototyping.
 
