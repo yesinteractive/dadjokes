@@ -34,7 +34,8 @@
   function api()
   {
     $arr = array('a' => 1, 'b' => 2, 'c' => 3, 'd' => 4, 'e' => 5);
-    status(202); //returns HTTP status code of 202
+   // status(202); //returns HTTP status code of 202
+    status(500); //returns HTTP status code of 202
     return json($arr);
   }
 
