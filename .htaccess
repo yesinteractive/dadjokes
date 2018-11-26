@@ -4,7 +4,7 @@
   RewriteEngine on
 
   # if your app is in a subfolder else set this to /
-    RewriteBase /gitprojects/fsl/ 
+    RewriteBase /
 
   # test string is a valid files
   RewriteCond %{SCRIPT_FILENAME} !-f
