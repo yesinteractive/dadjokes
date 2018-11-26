@@ -5,3 +5,4 @@ unzip master.zip -d /app && \
 cp -r /app/fsl-master/. /app && \
 rm -rf /app/fsl-master
 EXPOSE 80
+EXPOSE 443
