@@ -37,7 +37,7 @@
 # ============================================================================ # 
 # See LICENSE.3RDPARTY for other Open Source Credits and Licenses utilized by FSL
 # 
-# FSL is an extension of the Limonade Framework built by Fabrice Luraine
+# FSL is an extension of the Limonade Framework built by Fabrice Luraine v0.5
 /**
  *  L I M O N A D E
  * 
@@ -64,10 +64,10 @@
 /**
  * Limonade version
  */
-define('LIMONADE',              '0.5.0');
-define('LIM_NAME',              'Un grand cru qui sait se faire attendre');
+define('LIMONADE',              '0.12.0');
+define('LIM_NAME',              'Fresh Squeezed Limonade');
 define('LIM_START_MICROTIME',   microtime(true));
-define('LIM_SESSION_NAME',      'LIMONADE'.str_replace('.','x',LIMONADE));
+define('LIM_SESSION_NAME',      'fsl'.str_replace('.','x',LIMONADE));
 define('LIM_SESSION_FLASH_KEY', '_lim_flash_messages');
 if(function_exists('memory_get_usage'))
 define('LIM_START_MEMORY',      memory_get_usage());
