@@ -28,6 +28,29 @@ Enjoy!
 
 ## FSL Installation ##
 
+### With Docker ###
+
+[![Latest](https://badge.imagelayers.io/k0st/alpine-apache-php.svg)](https://imagelayers.io/?images=k0st/alpine-apache-php:latest 'latest')
+
+Docker image is alpine based (k0st/alpine-apache-app). You can pull the latest image from DockerHub with the following command:
+```
+docker pull yesinteractive/fsl
+```
+Typical basic usage:
+
+```
+docker run -it yesinteractive/fsl
+```
+
+Typical usage in Dockerfile:
+
+```
+FROM yesinteractive/fsl
+RUN echo "<?php phpinfo() ?>" > /app/index.php
+```
+
+
+
 ### With Composer ###
 
 It's recommended that you use [Composer](https://getcomposer.org/) to install FSL. Navigate into your project’s root directory and execute the bash command shown below. This command downloads the FSL Framework and its third-party dependencies into your project’s vendor/ directory.
