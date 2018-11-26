@@ -5,7 +5,7 @@
 function configure()
 {
   option('env', ENV_DEVELOPMENT);
-  option('base_uri', "/gitprojects/fsl/"); //set if app is not in web root directory but in a subdirectory
+  option('base_uri', "/"); //set if app is not in web root directory but in a subdirectory
   option('session', 'fsl'); // enable with a specific session name
   
   //##############################################
