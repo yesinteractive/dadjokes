@@ -22,11 +22,12 @@
 
   </a>
       <span class="navbar-text">
-    FSL: A refreshing micro PHP framework
+    FSL: A refreshing micro PHP framework<BR>
+        Version <?php echo option('fsl_version'); ?>
   </span>
 </nav>  
     
-   
+    
   <div class="container">
    
     <BR>
