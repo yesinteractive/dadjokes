@@ -30,7 +30,7 @@ Enjoy!
 
 ### With Docker ###
 
-[![Latest](https://badge.imagelayers.io/k0st/alpine-apache-php.svg)](https://imagelayers.io/?images=k0st/alpine-apache-php:latest 'latest')
+[![](https://images.microbadger.com/badges/image/yesinteractive/fsl.svg)](https://microbadger.com/images/yesinteractive/fsl "Get your own image badge on microbadger.com") [![](https://images.microbadger.com/badges/version/yesinteractive/fsl.svg)](https://microbadger.com/images/yesinteractive/fsl "Get your own version badge on microbadger.com")
 
 Docker image is alpine based (k0st/alpine-apache-app). You can pull the latest image from DockerHub with the following command:
 ```
