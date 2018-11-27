@@ -87,15 +87,30 @@ require 'lib/fsl.php';
 
 ```
 
-### Getting Up and Running ###
-
+## Getting Up and Running ##
+> Please note that if you are using the FSL Docker image, proceed to step 5.
 
 1. Once files are in place on web server, make sure to have URL rewriting enabled in Apache. 
-2. Verify that the directory FSL is placed in on your webserver has the AllowOverride directive set to `ALL (AllowOverride All)` in the Apache `<Directory>` configuration. If this is not set then the included `.htaccess` file will not be read and routes will not be execute correctly.
-3. Update the RewriteBase directive in the included `.htaccess` file to accomodate your app if it is installed in a web sub directory (not root)
-4. Edit the /config/fsl_config.php file to suit your needs. IMPORTANT: Be sure to set the correct Base URI where FSL is installed.
-5. The code comes with an example app (index.php) with several route and countroller (/controllers/fsl_controllers.php) examples to demonstrate the flexibilty of the framework.
-6. Once configured, browser to the index.php where you installed FSL and you should see the following:
+2. WEB SERVER CONFIGURATION: Verify that the directory FSL is placed in on your webserver has the AllowOverride directive set to `ALL (AllowOverride All)` in the Apache `<Directory>` configuration. If this is not set then the included `.htaccess` file will not be read and routes will not be execute correctly.
+3. .HTACCESS CONFIGURATION: Update the RewriteBase directive in the included `.htaccess` file to accomodate your app if it is installed in a web sub directory (not root). If installing FSL in a root web directory, then nothing needs to be changed. If you are installing FSL in a sub directory such as /foo, then make the following change to the .htaccess file: 
+```
+RewriteBase /foo
+```
+
+4. FSL CONFIG FILE: Edit the /config/fsl_config.php file to suit your needs. IMPORTANT: Be sure to set the correct Base URI where FSL is installed. If you are installing FSL in a sub directory on your webserver such as /foo, then make the following change to the /config/fsl_config.php file: 
+```
+option('base_uri', "/foo"); //set if app is not in web root directory but in a subdirectory
+```
+5. The code comes with an example app (index.php) with several route and countroller (/controllers/fsl_controllers.php) examples to demonstrate the flexibilty of the framework. Here are some examples of default mappings configured as examples:
+
+HTTP Method | URL Path | Controller Function | Demo
+------------ | ------------- | ------------- | -------------
+GET | / | hello_world | Sample Home Page, Creates Session
+GET | /api | api | Microservice Example (JSON Response)
+GET | /showip | showip | Showcases encrypt/decrypt functions
+
+
+6. Once configured, direct your browser to the location where you installed FSL and you should see the following:
 ![alt text](https://github.com/yesinteractive/fsl/blob/master/public/itworks.png "FSL Fresh Squeezed Limonade PHP Microframework Landing Page")
 
 
