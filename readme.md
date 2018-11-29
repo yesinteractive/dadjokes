@@ -46,7 +46,7 @@ Typical usage in Dockerfile:
 
 ```
 FROM yesinteractive/fsl
-RUN echo "<?php phpinfo() ?>" > /app/index.php
+RUN echo <your commands here>
 ```
 
 
