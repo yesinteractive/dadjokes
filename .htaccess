@@ -3,8 +3,8 @@
   Options +Indexes
   RewriteEngine on
 
-  # if your app is in a subfolder else set this to /
-    RewriteBase /gitprojects/fsl
+  # set directory to FSL Install if your app is in a subfolder else set this to /
+    RewriteBase /
 
   # test string is a valid files
   RewriteCond %{SCRIPT_FILENAME} !-f
