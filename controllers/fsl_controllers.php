@@ -1,12 +1,24 @@
 <?php
 
+/*
+*
+*   Sample controller functions showcased on FSL Launch Page
+*
+*/
+
+function process_time(){
+   $time = number_format( microtime(true) - LIM_START_MICROTIME, 6);
+  return("<BR>Controller Function Called: " .  option('routecallback') . "<BR>Request processed in $time seconds");
+}
+
   function hello_world()
   {
     
-    fsl_session_set('crop','My session data.');
+    fsl_session_set('crop','Yummy Limonade');
     set_or_default('name', params('who'), "everybody");
-
-    return html("<center><h1>Ahhhhhhh! It works.</h1></center>");
+    $time = number_format( microtime(true) - LIM_START_MICROTIME, 6);
+   
+    return html("Session Data Set: Yummy Limonade<BR>". process_time());
   }
 
 /*
@@ -21,8 +33,8 @@
    $token['id'] = "test123";
    $testjwt =  fsl_jwt_encode($token, "testkey");
    $jwtdecode = fsl_jwt_decode($testjwt,"testkey");
-
-    return html("JWT: $testjwt<BR>Decoded JWT: " . $jwtdecode->id);
+   $time = number_format( microtime(true) - LIM_START_MICROTIME, 6); 
+    return html("Token To Encode: " . $token['id'] ." <BR>JWT: $testjwt<BR>Decoded JWT: " . $jwtdecode->id . "<BR>". process_time());
   }
 
 /*
@@ -35,7 +47,7 @@
   {
     $arr = array('a' => 1, 'b' => 2, 'c' => 3, 'd' => 4, 'e' => 5);
    // status(202); //returns HTTP status code of 202
-    status(500); //returns HTTP status code of 202
+    status(202); //returns HTTP status code of 202
     return json($arr);
   }
 
@@ -47,22 +59,22 @@ function showip()
 
     //session data example
 
-    $session = (empty(fsl_session_check('crop'))) ? "No session data." : fsl_session_check('crop');
+    $session = (empty(fsl_session_check('crop'))) ? "No session exists" : fsl_session_check('crop');
 
     //Encryption Example
-    $estring = fsl_encrypt("this is a test");
+    $estring = fsl_encrypt($session);
     $dstring = fsl_decrypt($estring);
     
     
   
-    return html("IP of the client is $ip.<BR>Your session is $session. <BR><BR>Encrypt string is $estring<BR><BR>Decrypted is $dstring ");
+    return html("Your IP is $ip.<BR>Your session data: $session. <BR>Session Data encrypted.<BR>Encrypt session data: $estring<BR>Session Data decrypted.<BR>Decrypted session data: $dstring <BR>" . process_time());
   } 
 
- function hello()
+ function kill_session()
   {
     set_or_default('name', params('who'), "everybody");
     session_destroy();
-    return html("Hello %s!");
+    return html("Session Is Destroyed.<BR>" . process_time());
   }
 
  function welcome()
@@ -80,7 +92,7 @@ function showip()
 
     }
     set('name', $name);
-    return html("Are you ok $name ?");
+    return html("Are you ok $name ?<BR>". process_time());
   }
 
  function how_are_you()
@@ -90,7 +102,7 @@ function showip()
     # you can call an other controller function if you want
     if(strlen($name) < 4) return are_you_ok($name);
     set('name', $name);
-    return html("I hope you are fine, $name.");
+    return html("I hope you are fine, $name.<BR>". process_time());
   }
 
  function image_show()

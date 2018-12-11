@@ -111,7 +111,7 @@ GET | /showip | showip | Showcases encrypt/decrypt functions
 
 
 6. Once configured, direct your browser to the location where you installed FSL and you should see the following:
-![alt text](https://github.com/yesinteractive/fsl/blob/master/public/itworks.png "FSL Fresh Squeezed Limonade PHP Microframework Landing Page")
+![alt text](https://github.com/yesinteractive/fsl/blob/master/public/launchpage.png "FSL Fresh Squeezed Limonade PHP Microframework Landing Page")
 
 
 

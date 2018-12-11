@@ -20,6 +20,7 @@ require_once 'lib/fsl.php';
 function before($route)
 {
   header("X-LIM-route-function: ".$route['callback']);
+  option('routecallback', $route['callback']);
   layout('fsl_default_layout.php');
 }
 
@@ -45,16 +46,16 @@ dispatch('/api', 'api');
 //example showing JWT usage
 dispatch('/jwt', 'jwt');
 
-  
+//show session 
 dispatch('/showip/:what/:who', 'showip');
    
-  
-dispatch('/hello/:who', 'hello');
+//kill session 
+dispatch('/kill/:who', 'kill_session');
  
-  
-dispatch('/welcome/:name', 'welcome');
+//HTTP POST route example. FSL also supports PUT, PATCH, DELETE
+dispatch_post('/welcome/:name', 'welcome');
  
-
+//other random examples
 dispatch('/are_you_ok/:name', 'are_you_ok');
  
     
