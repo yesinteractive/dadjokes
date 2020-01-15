@@ -1,11 +1,11 @@
 {
-    "name": "fsl/fsl",
-    "description": "Fresh Squeezed Limonade (FSL): a PHP micro-framework for rapid development of Microservices and REST API's and Web Apps",
-    "keywords": ["framework","micro","api","router","microservices","docker","php"],
-    "homepage": "https://github.com/yesinteractive/fsl",
+    "name": "yesllc/dadjokes",
+    "description": "Dad jokes microservice used for testing of Kubernetes, Kong, Istio, Kuma, etc",
+    "keywords": ["framework","micro","api","router","microservices","docker","php","kubernetes","service mesh","istio","kuma"],
+    "homepage": "https://github.com/yesinteractive/dad-jokes_microservice",
      "require": {
         "php": ">=5.5",
-        "fsl/fsl": "*"
+        "yesllc/dadjokes": "*"
     },
     "license": "MIT",
     "authors": [
