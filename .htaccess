@@ -4,7 +4,7 @@
   RewriteEngine on
 
   # set directory to FSL Install if your app is in a subfolder else set this to /
-    RewriteBase /
+    RewriteBase /gitprojects/dad-jokes_microservice/
 
   # test string is a valid files
   RewriteCond %{SCRIPT_FILENAME} !-f

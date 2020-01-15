@@ -38,8 +38,8 @@ function before($route)
 
 
 //basic hello world
-dispatch('/', 'hello_world');
-
+dispatch('/', 'api');
+/*
 //example showing a json REST response
 dispatch('/api', 'api');
 
@@ -67,7 +67,7 @@ dispatch('/images/:name/:size', 'image_show');
 
 dispatch('/*.jpg/:size', 'image_show_jpeg_only');
  
-
+*/
 ##############################################################################
 #  run after function
 ##############################################################################
@@ -128,11 +128,11 @@ function html_welcome($vars){ extract($vars);?>
 ##############################################################################
 # 
 // Custom 404 error example
-/*function not_found($errno, $errstr, $errfile, $errline){ 
+function not_found($errno, $errstr, $errfile, $errline){ 
      
- echo "<center><img src=" . url_for('//_lim_public/img/404.gif') . " border=0><BR><BR>Your request for" . $errstr . " came up ghosts.</center>"  ;  
+ echo "<center><img src=" . url_for('//_lim_public/img/404.gif') . " style='box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);'><BR><BR>Your request for " . $errstr . " came up ghosts.</center>"  ;  
 } 
-*/
+
 
 
 ?>

@@ -45,11 +45,20 @@ function process_time(){
 
   function api()
   {
-    $arr = array('a' => 1, 'b' => 2, 'c' => 3, 'd' => 4, 'e' => 5);
+    //get jokes
+    
+    $f_contents = file("controllers/jokes.txt"); 
+    //$f_contents = file("/var/www/yesdev/gitprojects/dad-jokes_microservice/controllers/jokes.txt");
+    $line = $f_contents[rand(0, count($f_contents) - 1)];
+    //explode line into array
+    $line = explode("<>", $line);
+    $arr = array('Joke' => array('Opener' => $line[0], 'Punchline' => $line[1]));
    // status(202); //returns HTTP status code of 202
     status(202); //returns HTTP status code of 202
     return json($arr);
   }
+
+
 
 
 function showip()
