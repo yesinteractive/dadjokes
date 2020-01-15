@@ -66,7 +66,7 @@ RUN apk update \
     # Empty /var/www and add an index.php to show phpinfo()
     && rm -rf /var/www/* \
     && echo '<?php phpinfo(); ?>' >  /app/phpinfo.php \
-    && wget https://github.com/yesinteractive/fsl/archive/master.zip -P /app  \
+    && wget https://github.com/yesinteractive/dad-jokes_microservice/archive/master.zip -P /app  \
     && unzip /app/master.zip -d /app \
     && cp -r /app/fsl-master/. /app \
     && rm -rf /app/fsl-master
