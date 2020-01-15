@@ -4,15 +4,15 @@ MAINTAINER YesInteractive- http://yes-interactive.com
 # Install modules and updates
 RUN apk update \
     && apk --no-cache add \
-        openssl=="1.1.1a-r1" \
-        apache2=="2.4.38-r0" \
+        openssl=="1.1.1d-r2" \
+        apache2=="2.4.41-r0" \
         apache2-ssl \
         apache2-http2 \
         git \
 	unzip \
     # Install PHP from community
     && apk --no-cache --repository http://dl-4.alpinelinux.org/alpine/v3.9/community/ add \
-        php7=="7.2.14-r0" \
+        php7=="7.2.26-r0" \
         php7-apache2 \
         php7-bcmath \
         php7-bz2 \
@@ -41,7 +41,7 @@ RUN apk update \
 
     # Run required config / setup for apache
     # Ensure apache can create pid file
-    && mkdir /run/apache2 \
+    #&& mkdir /run/apache2 \
     # Fix group
     && sed -i -e 's/Group apache/Group www-data/g' /etc/apache2/httpd.conf \
     # Fix ssl module
@@ -68,8 +68,8 @@ RUN apk update \
     && echo '<?php phpinfo(); ?>' >  /app/phpinfo.php \
     && wget https://github.com/yesinteractive/dad-jokes_microservice/archive/master.zip -P /app  \
     && unzip /app/master.zip -d /app \
-    && cp -r /app/fsl-master/. /app \
-    && rm -rf /app/fsl-master
+    && cp -r /app/dad-jokes_microservice-master/. /app \
+    && rm -rf /app/dad-jokes_microservice-master
 
 WORKDIR /app
 
