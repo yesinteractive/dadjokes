@@ -75,15 +75,5 @@ RewriteBase /foo
 ```
 option('base_uri', "/foo"); //set if app is not in web root directory but in a subdirectory
 ```
-5. The code comes with an example app (index.php) with several route and countroller (/controllers/fsl_controllers.php) examples to demonstrate the flexibilty of the framework. Here are some examples of default mappings configured as examples:
 
-HTTP Method | URL Path | Controller Function | Demo
------------- | ------------- | ------------- | -------------
-GET | / | hello_world | Sample Home Page, Creates Session
-GET | /api | api | Microservice Example (JSON Response)
-GET | /showip | showip | Showcases encrypt/decrypt functions
-
-
-6. Once configured, direct your browser to the location where you installed FSL and you should see the following:
-![alt text](https://github.com/yesinteractive/fsl/blob/master/public/launchpage.png "FSL Fresh Squeezed Limonade PHP Microframework Landing Page")
 
