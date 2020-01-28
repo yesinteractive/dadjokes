@@ -12,7 +12,7 @@ RUN apk update \
 	unzip \
     # Install PHP from community
     && apk --no-cache --repository http://dl-4.alpinelinux.org/alpine/v3.9/community/ add \
-        php7=="7.2.26-r0" \
+        php7=="7.2.27-r0" \
         php7-apache2 \
         php7-bcmath \
         php7-bz2 \
