@@ -127,10 +127,21 @@ function html_welcome($vars){ extract($vars);?>
 # custom error declaration
 ##############################################################################
 # 
-// Custom 404 error example
+// Custom 404 
 function not_found($errno, $errstr, $errfile, $errline){ 
      
- echo "<center><img src=" . url_for('//_lim_public/img/404.gif') . " style='box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);'><BR><BR>Your request for " . $errstr . " came up ghosts.</center>"  ;  
+     $arr = array('Error' => "$errno $errstr Not Found");
+   // status(202); //returns HTTP status code of 202
+    status(404); //returns HTTP status code of 202
+    return json($arr);
+} 
+// Custom 500
+function server_error($errno, $errstr, $errfile, $errline){ 
+ 
+     $arr = array('Error' => "$errno $errstr ");
+   // status(202); //returns HTTP status code of 202
+    status(500); //returns HTTP status code of 202
+    return json($arr);
 } 
 
 
