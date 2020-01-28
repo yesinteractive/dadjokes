@@ -6,7 +6,7 @@ Just a sample microservice used for testing Kong API Gateway, Kubernetes K8s, Do
 
 ## Usage ##
 
-**Respones Code** : `200 OK`
+**Response Code** : `200 OK`
 
 ```json
 {
