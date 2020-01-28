@@ -1,0 +1,11 @@
+# docker compose example
+# exposes dadjokes service on port 8081
+---
+version: '3'
+services:
+  dadjokes:
+    image: docker.io/yesinteractive/dadjokes
+    container_name: dadjokes
+    restart: always
+    ports:
+      - "8081:80"

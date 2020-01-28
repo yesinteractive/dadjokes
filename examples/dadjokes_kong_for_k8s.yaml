@@ -1,0 +1,65 @@
+# yaml configuration for kong for kubernetes
+# creates ingress rule /dadjokes for dadjokes service
+# applies an example rate limit policy using Kong's KongPlugin CRD
+# learn about the Kong Ingress Controller at https://github.com/Kong/kubernetes-ingress-controller
+# usage: kubectl apply -f dadjokes_kong_for_k8s.yaml
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: dadjokes
+  labels:
+    app: dadjokes
+spec:
+  ports:
+  - name: http
+    port: 80
+    targetPort: 80
+  selector:
+    app: dadjokes
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dadjokes
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: dadjokes
+  template:
+    metadata:
+      labels:
+        app: dadjokes
+    spec:
+      containers:
+      - image: docker.io/yesinteractive/dadjokes
+        name: dadjokes
+        ports:
+        - containerPort: 80
+---
+kind: KongPlugin
+apiVersion: configuration.konghq.com/v1
+metadata:
+  name: ratelimit-jokes
+config:
+  minute: 60
+  limit_by: ip
+  policy: local
+plugin: rate-limiting
+ 
+---
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: dadjokes-route
+  annotations:
+   plugins.konghq.com: ratelimit-jokes
+spec:
+  rules:
+  - http:
+      paths:
+      - path: /dadjokes
+        backend:
+          serviceName: dadjokes
+          servicePort: 80

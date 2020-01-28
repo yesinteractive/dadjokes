@@ -1,0 +1,37 @@
+# dadjokes service yaml configuration for kubernetes
+# exposes NodePort Service with auto assigned nodePort
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: dadjokes
+  labels:
+    app: dadjokes
+spec:
+  type: NodePort
+  ports:
+  - name: http
+    port: 80
+    targetPort: 80
+  selector:
+    app: dadjokes
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dadjokes
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: dadjokes
+  template:
+    metadata:
+      labels:
+        app: dadjokes
+    spec:
+      containers:
+      - image: docker.io/yesinteractive/dadjokes
+        name: dadjokes
+        ports:
+        - containerPort: 80
