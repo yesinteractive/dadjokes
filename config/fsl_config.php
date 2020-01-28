@@ -6,8 +6,8 @@ function configure()
 {
   option('fsl_version', "0.14");
   option('env', ENV_DEVELOPMENT);
-  option('base_uri', "/"); //set if app is not in web root directory but in a subdirectory
-  option('session', 'fsl'); // enable with a specific session name
+  option('base_uri', "/"); //set if app is not in web root directory but in a subdirectory.
+  option('session', 'fsl'); // enable with a specific session name 
   
   //##############################################
   //encryption configuration
