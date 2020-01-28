@@ -6,7 +6,18 @@ Just a sample microservice used for testing Kong API Gateway, Kubernetes K8s, Do
 
 ## Usage ##
 
-### Examples ###
+**Respones Code** : `200 OK`
+
+```json
+{
+  "Jokes": {
+    "Opener": "What did the mountain climber name his son?",
+    "Punchline": "Cliff"
+  }
+}
+```
+
+### Deployment Examples ###
 
 See usage examples for Kubernetes, Kong for Kubernetes Ingress Controller, and docker-compose in the [examples directory folder.](https://github.com/yesinteractive/dad-jokes_microservice/blob/master/examples)
 
