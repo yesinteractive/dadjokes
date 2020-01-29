@@ -1,4 +1,6 @@
 # Dad Jokes Microservice #
+![Alt Text](https://dev-to-uploads.s3.amazonaws.com/i/0ckh82ned3gipoy2o03m.jpg)
+
 [![GitHub release](https://img.shields.io/github/release/yesinteractive/dad-jokes_microservice.svg)](https://github.com/yesinteractive/dad-jokes_microservice) 
 ![Packagist](https://img.shields.io/packagist/l/fsl/fsl.svg) ![PHP from Packagist](https://img.shields.io/packagist/php-v/fsl/fsl.svg)
 
