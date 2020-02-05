@@ -4,7 +4,7 @@
 [![GitHub release](https://img.shields.io/github/release/yesinteractive/dad-jokes_microservice.svg)](https://github.com/yesinteractive/dad-jokes_microservice) 
 ![Packagist](https://img.shields.io/packagist/l/fsl/fsl.svg) ![PHP from Packagist](https://img.shields.io/packagist/php-v/fsl/fsl.svg)
 
-Just a sample microservice used for testing Kong API Gateway, Kubernetes K8s, Docker, Kuma Service mesh, Istio Service Mesh, etc. Feel free to [add your own jokes](https://github.com/yesinteractive/dad-jokes_microservice/blob/master/controller/jokes.txt) to this repo as well.
+Just a sample microservice used for testing Kong API Gateway, Kubernetes K8s, Docker, Kuma Service mesh, Istio Service Mesh, etc. Feel free to [add your own jokes](https://github.com/yesinteractive/dad-jokes_microservice/blob/master/controllers/jokes.txt) to this repo as well.
 
 ## Usage ##
 
