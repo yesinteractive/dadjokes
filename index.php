@@ -34,40 +34,11 @@ function before($route)
 #
 #  HTTP Method |  Url path         |  Controller function
 # -------------+-------------------+-------------------------------------------
-#   GET        |  /                |  hello_world
+#   GET        |  /                |  api
 
 
-//basic hello world
 dispatch('/', 'api');
-/*
-//example showing a json REST response
-dispatch('/api', 'api');
 
-//example showing JWT usage
-dispatch('/jwt', 'jwt');
-
-//show session 
-dispatch('/showip/:what/:who', 'showip');
-   
-//kill session 
-dispatch('/kill/:who', 'kill_session');
- 
-//HTTP POST route example. FSL also supports PUT, PATCH, DELETE
-dispatch_post('/welcome/:name', 'welcome');
- 
-//other random examples
-dispatch('/are_you_ok/:name', 'are_you_ok');
- 
-    
-dispatch('/how_are_you/:name', 'how_are_you');
- 
-  
-dispatch('/images/:name/:size', 'image_show');
- 
-
-dispatch('/*.jpg/:size', 'image_show_jpeg_only');
- 
-*/
 ##############################################################################
 #  run after function
 ##############################################################################
@@ -104,24 +75,6 @@ run();
 #  Layouts are autoloaded from views directory or can be referended
 #  as a function like below.
 
-function html_my_layout($vars){ extract($vars);?> 
-
-<!doctype html>
-<html lang="en">
-  <body>
-    Hello world!
-  </body>
-</html>
-
-<?php  }
-
-function html_welcome($vars){ extract($vars);?> 
-<h3>Hello <?php echo $name?>!</h3>
-<p><a href="<?php echo url_for('/how_are_you/', $name)?>">How are you <?php echo $name?>?</a></p>
-<hr>
-<p><a href="<?php echo url_for('/images/soda_glass.jpg')?>">
-   <img src="<?php echo url_for('/images/soda_glass.jpg/thumb')?>"></a></p>
-<?php }  
 
 ##############################################################################
 # custom error declaration
