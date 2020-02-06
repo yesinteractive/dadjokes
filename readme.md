@@ -14,7 +14,7 @@ Just a sample microservice used for testing Kong API Gateway, Kubernetes K8s, Do
 {
   "Jokes": {
     "Opener": "What did the mountain climber name his son?",
-    "Punchline": "Cliff"
+    "Punchline": "Cliff",
     "Processing Time": "0.001530"
   }
 }
