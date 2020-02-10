@@ -26,7 +26,7 @@ function process_time(){
     $line = $f_contents[rand(0, count($f_contents) - 1)];
     //explode line into array
     $line = explode("<>", $line);
-    $arr = array('Joke' => array('Opener' => $line[0], 'Punchline' => $line[1], 'Processing Time' => process_time()));
+    $arr = array('Joke' => array('Opener' => $line[0], 'Punchline' => trim($line[1]), 'Processing Time' => process_time()));
     status(202); //returns HTTP status code of 202
     return json($arr);
   }
