@@ -2,7 +2,7 @@
 # creates ingress rule /dadjokes for dadjokes service
 # applies an example rate limit policy using Kong's KongPlugin CRD
 # learn about the Kong Ingress Controller at https://github.com/Kong/kubernetes-ingress-controller
-# usage: kubectl apply -f dadjokes_kong_for_k8s.yaml
+# usage: kubectl apply -f http://tinyurl.com/sfh88p9
 ---
 apiVersion: v1
 kind: Service
