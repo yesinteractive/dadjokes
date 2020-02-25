@@ -16,7 +16,13 @@ Just a sample microservice used for testing Kong API Gateway, Kubernetes K8s, Do
 
 ## Usage ##
 
-**Response Code** : `200 OK`
+**Endpoint URI** : `/`
+
+**Method** : `GET`
+
+**Parameters** : none
+
+**Successful Response** : `200 OK`
 
 ```json
 {
