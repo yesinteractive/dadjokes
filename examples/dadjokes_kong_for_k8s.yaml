@@ -47,7 +47,6 @@ config:
   limit_by: ip
   policy: local
 plugin: rate-limiting
- 
 ---
 apiVersion: extensions/v1beta1
 kind: Ingress
@@ -55,6 +54,7 @@ metadata:
   name: dadjokes-route
   annotations:
    plugins.konghq.com: ratelimit-jokes
+   konghq.com/strip-path: "true"
 spec:
   rules:
   - http:
