@@ -10,9 +10,9 @@
 
 Just a sample microservice used for testing Kong API Gateway, Kubernetes K8s, Docker, Kuma Service mesh, Istio Service Mesh, etc. Feel free to [add your own jokes](https://github.com/yesinteractive/dad-jokes_microservice/blob/master/controllers/jokes.txt) to this repo as well.
 
-## Demo ##
+## Hosted Service / Demo ##
 
-[Click here to see a live demo.](http://yesllc.io/dadjokes)
+Access [http://dadjokes.online](http://dadjokes.online) to see the service in action.
 
 ## Usage ##
 
