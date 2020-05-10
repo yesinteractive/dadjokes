@@ -11,7 +11,7 @@ require_once 'lib/fsl.php';
 #  configurations
 ##############################################################################
 #  All in config directory
-  option('behind_proxy', TRUE);  //enabled if behind gateKong
+
 
 ##############################################################################
 #  code to run before route execution
