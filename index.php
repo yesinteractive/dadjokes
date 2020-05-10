@@ -11,6 +11,7 @@ require_once 'lib/fsl.php';
 #  configurations
 ##############################################################################
 #  All in config directory
+  option('behind_proxy', TRUE);  //enabled if behind gateKong
 
 ##############################################################################
 #  code to run before route execution
@@ -37,7 +38,7 @@ function before($route)
 #   GET        |  /                |  api
 
 
-dispatch('/', 'api');
+dispatch('/:uri_param/*', 'api');
 
 ##############################################################################
 #  run after function
