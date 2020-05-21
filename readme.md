@@ -8,7 +8,7 @@
 
 
 
-Just a sample microservice used for testing Kong API Gateway, Kubernetes K8s, Docker, Kuma Service mesh, Istio Service Mesh, etc. Feel free to [add your own jokes](https://github.com/yesinteractive/dad-jokes_microservice/blob/master/controllers/jokes.txt) to this repo as well.
+Just a sample microservice used for testing Kong API Gateway, Kubernetes K8s, Docker, Kuma Service mesh, Istio Service Mesh, etc. as an alternative to httpbin. Feel free to [add your own jokes](https://github.com/yesinteractive/dad-jokes_microservice/blob/master/controllers/jokes.txt) to this repo as well. The service also has a `/echo` endpoint that will return information about the incoming request, in addition to the dad jokes. This is helpful for testing and troubleshooting. 
 
 ## Hosted Service / Demo ##
 
