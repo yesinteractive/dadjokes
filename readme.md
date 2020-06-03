@@ -1,10 +1,10 @@
 # Dad Jokes Microservice #
 ![Alt Text](https://dev-to-uploads.s3.amazonaws.com/i/0ckh82ned3gipoy2o03m.jpg)
 
-[![Docker Pulls](https://img.shields.io/docker/pulls/yesinteractive/dadjokes)](https://hub.docker.com/r/yesinteractive/dadjokes) 
-[![GitHub stars](https://img.shields.io/github/stars/yesinteractive/dad-jokes_microservice?style=social)](https://github.com/yesinteractive/dad-jokes_microservice) 
-[![GitHub release](https://img.shields.io/github/release/yesinteractive/dad-jokes_microservice.svg)](https://github.com/yesinteractive/dad-jokes_microservice) 
-![MIT](https://img.shields.io/badge/license-MIT-green)
+[![Docker Pulls](https://img.shields.io/docker/pulls/yesinteractive/dadjokes?style=for-the-badge)](https://hub.docker.com/r/yesinteractive/dadjokes) 
+[![GitHub stars](https://img.shields.io/github/stars/yesinteractive/dad-jokes_microservice?style=for-the-badge)](https://github.com/yesinteractive/dad-jokes_microservice) 
+[![GitHub release](https://img.shields.io/github/release/yesinteractive/dad-jokes_microservice?style=for-the-badge)](https://github.com/yesinteractive/dad-jokes_microservice) 
+![MIT](https://img.shields.io/badge/license-MIT-green?style=for-the-badge)
 
 
 
