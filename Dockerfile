@@ -5,7 +5,7 @@ MAINTAINER YesInteractive- http://yes-interactive.com
 RUN apk update \
     && apk --no-cache add \
         openssl=="1.1.1g-r0" \
-        apache2=="2.4.43-r0" \
+        apache2=="2.4.46-r0" \
         apache2-ssl \
         apache2-http2 \
      	unzip \

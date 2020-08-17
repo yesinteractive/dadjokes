@@ -18,7 +18,7 @@ Access [http://dadjokes.online](http://dadjokes.online) to see the service in ac
 
 **Endpoint URI** : `/`
 
-**Method** : `GET`
+**Method** : `GET` `POST` `PUT` `PATCH` `DELETE`
 
 **Parameters** : optional
 
@@ -51,7 +51,7 @@ Access [http://dadjokes.online](http://dadjokes.online) to see the service in ac
     },
     "Request": {
         "Headers": {
-            "Host": "dev.yesllc.io",
+            "Host": "dadjokes.online",
             "Connection": "keep-alive",
             "X-Forwarded-For": "74.11.135.11",
             "X-Forwarded-Proto": "http",
