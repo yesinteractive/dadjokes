@@ -90,10 +90,13 @@ Docker image is Alpine 3.11 based running PHP 7.3 on Apache. The containter expo
 ```
 docker pull yesinteractive/dadjokes
 ```
-Typical basic usage:
+Typical basic usage (below example exposes dadjokes on host ports 8011 and 8143):
 
 ```
-docker run -it yesinteractive/dadjokes
+$ docker run -d \
+  -p 8100:80 \
+  -p 8143:443 \
+  yesinteractive/dadjokes
 ```
 
 Typical usage in Dockerfile:
