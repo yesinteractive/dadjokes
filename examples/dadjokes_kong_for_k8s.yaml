@@ -43,7 +43,7 @@ apiVersion: configuration.konghq.com/v1
 metadata:
   name: ratelimit-jokes
 config:
-  minute: 60
+  minute: 5
   limit_by: ip
   policy: local
 plugin: rate-limiting
@@ -53,7 +53,8 @@ kind: Ingress
 metadata:
   name: dadjokes-route
   annotations:
-   plugins.konghq.com: ratelimit-jokes
+   kubernetes.io/ingress.class: kong
+   konghq.com/plugins: ratelimit-jokes
    konghq.com/strip-path: "true"
 spec:
   rules:
