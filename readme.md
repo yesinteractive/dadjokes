@@ -1,5 +1,5 @@
 # Dad Jokes Microservice #
-![Alt Text](https://dev-to-uploads.s3.amazonaws.com/i/0ckh82ned3gipoy2o03m.jpg)
+![Dad Jokes As A Microservice](https://raw.githubusercontent.com/yesinteractive/dad-jokes_microservice/master/public/dadjokes-microservice.png)
 
 [![Docker Pulls](https://img.shields.io/docker/pulls/yesinteractive/dadjokes?style=for-the-badge)](https://hub.docker.com/r/yesinteractive/dadjokes) 
 [![GitHub stars](https://img.shields.io/github/stars/yesinteractive/dad-jokes_microservice?style=for-the-badge)](https://github.com/yesinteractive/dad-jokes_microservice) 
