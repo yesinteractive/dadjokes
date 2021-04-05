@@ -55,8 +55,8 @@ RUN apk update \
     && wget https://github.com/yesinteractive/dad-jokes_microservice/archive/master.zip -P /app  \
     && unzip /app/master.zip -d /app \
     && rm -rf /app/master.zip \
-    && cp -r /app/dad-jokes_microservice-master/. /app \
-    && rm -rf /app/dad-jokes_microservice-master
+    && cp -r /app/dadjokes-master/. /app \
+    && rm -rf /app/dajokes-master
 
 WORKDIR /app
 
