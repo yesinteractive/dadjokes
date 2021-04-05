@@ -35,7 +35,7 @@ Access [http://dadjokes.online](http://dadjokes.online) to see the service in ac
         "Punchline": "I left my food in the oven for too long.",
         "Processing Time": "0.001223"
     },
-    "Request": {
+    "RequestEcho": {
         "Headers": {
             "Host": "dadjokes.online",
             "Connection": "keep-alive",
