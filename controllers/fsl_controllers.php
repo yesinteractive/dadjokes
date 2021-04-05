@@ -27,11 +27,11 @@ function process_time(){
     //explode line into array
     $line = explode("<>", $line);
     $arr = array('Joke' => array('Opener' => $line[0], 'Punchline' => trim($line[1]), 'Processing Time' => process_time()));
-    
+    $credits = array('SourceCode' => 'https://github.com/yesinteractive/dadjokes');
     
     $headers = getallheaders();
 
-    if((!empty(params('uri_param')))&& (params('uri_param')=="echo")){
+    if((empty(params('uri_param'))) || (params('uri_param')!="noecho")){
           $request = ["Request"=>["Headers"=>$headers,
                   "Method"=>$_SERVER['REQUEST_METHOD'],
                   "Origin"=>$_SERVER['REMOTE_ADDR'],
@@ -43,10 +43,10 @@ function process_time(){
                                  
                  ]];
           status(202); //returns HTTP status code of 202
-    return json(array_merge($arr,$request),JSON_UNESCAPED_SLASHES);
+    return json(array_merge($arr,$request,$credits),JSON_UNESCAPED_SLASHES);
     } else{
           status(202); //returns HTTP status code of 202
-    return json(array_merge($arr),JSON_UNESCAPED_SLASHES);
+    return json(array_merge($arr,$credits),JSON_UNESCAPED_SLASHES);
     }
     
   }

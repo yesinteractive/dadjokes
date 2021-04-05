@@ -4,14 +4,14 @@ MAINTAINER YesInteractive- http://yes-interactive.com
 # Install modules and updates
 RUN apk update \
     && apk --no-cache add \
-        openssl=="1.1.1g-r0" \
+        openssl=="1.1.1k-r0" \
         apache2=="2.4.46-r0" \
         apache2-ssl \
         apache2-http2 \
      	unzip \
     # Install PHP from community
     && apk --no-cache --repository http://dl-4.alpinelinux.org/alpine/v3.11/community/ add \
-        php7=="7.3.18-r0" \
+        php7=="7.3.22-r0" \
         php7-apache2 \
         php7-common \
         php7-ctype \
@@ -24,7 +24,7 @@ RUN apk update \
         php7-session \
         php7-sockets \
     && rm /var/cache/apk/* \
-    
+
     # Run required config / setup for apache
     # Ensure apache can create pid file
     #&& mkdir /run/apache2 \
@@ -44,7 +44,7 @@ RUN apk update \
     && echo '' >> /etc/apache2/httpd.conf \
     && echo 'IncludeOptional /etc/apache2/conf.d/custom/*.conf' >> /etc/apache2/httpd.conf \
     # Fix modules
-    && sed -i 's#AllowOverride None#AllowOverride All#' /etc/apache2/httpd.conf \	
+    && sed -i 's#AllowOverride None#AllowOverride All#' /etc/apache2/httpd.conf \
     && sed -i -e 's/ServerRoot \/var\/www/ServerRoot \/etc\/apache2/g' /etc/apache2/httpd.conf \
     && mv /var/www/modules /etc/apache2/modules \
     && mv /var/www/run /etc/apache2/run \

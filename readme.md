@@ -8,7 +8,12 @@
 
 
 
-Just a sample microservice used for testing Kong API Gateway, Kubernetes K8s, Docker, Kuma Service mesh, Istio Service Mesh, etc. as an alternative to httpbin. Feel free to [add your own jokes](https://github.com/yesinteractive/dad-jokes_microservice/blob/master/controllers/jokes.txt) to this repo as well. The service also has a `/echo` endpoint that will return information about the incoming request, in addition to the dad jokes. This is helpful for testing and troubleshooting. 
+Just a sample microservice or echo service used for testing Kong API Gateway, Kubernetes K8s, Docker, 
+Kuma Service mesh, Istio Service Mesh, etc. as an alternative to httpbin. Feel free 
+to [add your own jokes](https://github.com/yesinteractive/dad-jokes_microservice/blob/master/controllers/jokes.txt) 
+to this repo as well. In addition to a dad joke, the service will automatically echo back information about the 
+incoming request. This is helpful for testing and troubleshooting. If you wish to not display echo back the request 
+data, then just make the request against the `/noecho` endpoint. 
 
 ## Hosted Service / Demo ##
 
@@ -19,25 +24,6 @@ Access [http://dadjokes.online](http://dadjokes.online) to see the service in ac
 **Endpoint URI** : `/`
 
 **Method** : `GET` `POST` `PUT` `PATCH` `DELETE`
-
-**Parameters** : optional
-
-**Successful Response** : `200 OK`
-
-```json
-{
-  "Jokes": {
-    "Opener": "What did the mountain climber name his son?",
-    "Punchline": "Cliff",
-    "Processing Time": "0.001530"
-  }
-}
-```
-
-
-**Endpoint URI** : `/echo`
-
-**Method** : `GET`
 
 **Parameters** : optional
 
@@ -75,6 +61,24 @@ Access [http://dadjokes.online](http://dadjokes.online) to see the service in ac
         "Data": "",
         "URL": "http://dadjokes.online/echo"
     }
+}
+```
+
+**Endpoint URI** : `/noecho`
+
+**Method** : `GET` `POST` `PUT` `PATCH` `DELETE`
+
+**Parameters** : optional
+
+**Successful Response** : `200 OK`
+
+```json
+{
+  "Jokes": {
+    "Opener": "What did the mountain climber name his son?",
+    "Punchline": "Cliff",
+    "Processing Time": "0.001530"
+  }
 }
 ```
 
