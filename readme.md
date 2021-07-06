@@ -2,15 +2,15 @@
 ![Dad Jokes As A Microservice](https://raw.githubusercontent.com/yesinteractive/dad-jokes_microservice/master/public/dadjokes-microservice.png)
 
 [![Docker Pulls](https://img.shields.io/docker/pulls/yesinteractive/dadjokes?style=for-the-badge)](https://hub.docker.com/r/yesinteractive/dadjokes) 
-[![GitHub stars](https://img.shields.io/github/stars/yesinteractive/dad-jokes_microservice?style=for-the-badge)](https://github.com/yesinteractive/dad-jokes_microservice) 
-[![GitHub release](https://img.shields.io/github/release/yesinteractive/dad-jokes_microservice?style=for-the-badge)](https://github.com/yesinteractive/dad-jokes_microservice) 
+[![GitHub stars](https://img.shields.io/github/stars/yesinteractive/dadjokes?style=for-the-badge)](https://github.com/yesinteractive/dad-jokes_microservice) 
+[![GitHub release](https://img.shields.io/github/release/yesinteractive/dadjokes?style=for-the-badge)](https://github.com/yesinteractive/dad-jokes_microservice) 
 ![MIT](https://img.shields.io/badge/license-MIT-green?style=for-the-badge)
 
 
 
 Just a sample microservice or echo service used for testing API Gateways such as Kong, Kubernetes K8s, Openshift, Docker, 
 Service meshes such as Kuma or Istio, etc. as an alternative to httpbin. Feel free 
-to [add your own jokes](https://github.com/yesinteractive/dad-jokes_microservice/blob/master/controllers/jokes.txt) 
+to [add your own jokes](https://github.com/yesinteractive/dadjokes/blob/master/controllers/jokes.txt) 
 to this repo as well. In addition to a dad joke, the service will automatically echo back information about the 
 incoming request. This is helpful for testing and troubleshooting. If you wish to not display echo back the request 
 data, then just make the request against the `/noecho` endpoint. 
@@ -90,7 +90,7 @@ See usage examples for Kubernetes, Kong for Kubernetes Ingress Controller, and d
 
 ### With Docker ###
 
-Docker image is Alpine 3.11 based running PHP 7.3 on Apache. The containter exposes both ports 80 an 443 with a self signed certificated. If you wish to alter the container configuration, feel free to use the Dockerfile in this repo (https://github.com/yesinteractive/dad-jokes_microservice/blob/master/Dockerfile). Otherwise, you can pull the latest image from DockerHub with the following command:
+Docker image is Alpine 3.11 based running PHP 7.3 on Apache. The containter exposes both ports 8100 (HTTP) an 8143 (HTTPS) with a self signed certificated. If you wish to alter the container configuration, feel free to use the Dockerfile in this repo (https://github.com/yesinteractive/dad-jokes_microservice/blob/master/Dockerfile). Otherwise, you can pull the latest image from DockerHub with the following command:
 ```
 docker pull yesinteractive/dadjokes
 ```
@@ -98,8 +98,8 @@ Typical basic usage (below example exposes dadjokes on host ports 8100 and 8143)
 
 ```
 $ docker run -d \
-  -p 8100:80 \
-  -p 8143:443 \
+  -p 8100:8100 \
+  -p 8143:8143 \
   yesinteractive/dadjokes
 ```
 

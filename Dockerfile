@@ -5,7 +5,7 @@ MAINTAINER YesInteractive- http://yes-interactive.com
 RUN apk update \
     && apk --no-cache add \
         openssl=="1.1.1k-r0" \
-        apache2=="2.4.46-r0" \
+        apache2=="2.4.48-r0" \
         apache2-ssl \
         apache2-http2 \
      	unzip \
@@ -39,6 +39,9 @@ RUN apk update \
     && mkdir /app && chown -R apache:apache /app \
     && sed -i -e 's/\/var\/www\/localhost\/htdocs/\/app/g' /etc/apache2/httpd.conf \
     && sed -i -e 's/\/var\/www\/localhost\/htdocs/\/app/g' /etc/apache2/conf.d/ssl.conf \
+    # Change default ports
+    && sed -i -e 's/Listen 80/Listen 8100/g' /etc/apache2/httpd.conf \
+    && sed -i -e 's/443/8143/g' /etc/apache2/conf.d/ssl.conf \
     # Allow for custom apache configs
     && mkdir /etc/apache2/conf.d/custom \
     && echo '' >> /etc/apache2/httpd.conf \
@@ -61,7 +64,7 @@ RUN apk update \
 WORKDIR /app
 
 # Export http and https
-EXPOSE 80 443
+EXPOSE 8100 8143
 
 # Run apache in foreground
 CMD ["/usr/sbin/httpd", "-D", "FOREGROUND"]
