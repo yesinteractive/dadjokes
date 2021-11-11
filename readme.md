@@ -13,7 +13,7 @@ Service meshes such as Kuma or Istio, etc. as an alternative to httpbin. Feel fr
 to [add your own jokes](https://github.com/yesinteractive/dadjokes/blob/master/controllers/jokes.txt) 
 to this repo as well. In addition to a dad joke, the service will automatically echo back information about the 
 incoming request. This is helpful for testing and troubleshooting. If you wish to not display echo back the request 
-data, then just make the request against the `/noecho` endpoint. 
+data, then just make the request against the `/noecho` endpoint or by configuring the dadjokes service with the noecho environment variable set to true. 
 
 ## Hosted Service / Demo ##
 
@@ -64,7 +64,12 @@ Access [http://dadjokes.online](http://dadjokes.online) to see the service in ac
 }
 ```
 
-**Endpoint URI** : `/noecho`
+### Deployment Examples ###
+
+To disable the echoing of in the incomfing response, simply add the docker environment variable `DADJOKES_NOECHO=TRUE` to your configuration or simply use the `\noecho` endpoint in
+the first level of your request calls. For example:
+
+**Endpoint URI** : `/noecho/abc/efg/`
 
 **Method** : `GET` `POST` `PUT` `PATCH` `DELETE`
 
@@ -100,6 +105,7 @@ Typical basic usage (below example exposes dadjokes on host ports 8100 and 8143)
 $ docker run -d \
   -p 8100:8100 \
   -p 8143:8143 \
+  -e DADJOKES_NOECHO=FALSE \
   yesinteractive/dadjokes
 ```
 

@@ -31,7 +31,7 @@ function process_time(){
     
     $headers = getallheaders();
 
-    if((empty(params('uri_param'))) || (params('uri_param')!="noecho")){
+    if((empty(params('uri_param'))) || (params('uri_param')!="noecho") || (getenv("DADJOKES_NOECHO") == "TRUE")){
           $request = ["RequestEcho"=>["Headers"=>$headers,
                   "Method"=>$_SERVER['REQUEST_METHOD'],
                   "Origin"=>$_SERVER['REMOTE_ADDR'],
