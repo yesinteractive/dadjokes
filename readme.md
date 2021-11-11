@@ -64,7 +64,7 @@ Access [http://dadjokes.online](http://dadjokes.online) to see the service in ac
 }
 ```
 
-### Deployment Examples ###
+### DISABLING THE ECHO FEATURE ###
 
 To disable the echoing of in the incomfing response, simply add the docker environment variable `DADJOKES_NOECHO=TRUE` to your configuration or simply use the `\noecho` endpoint in
 the first level of your request calls. For example:
