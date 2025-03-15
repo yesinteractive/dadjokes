@@ -1,11 +1,10 @@
 {
     "name": "yesllc/dadjokes",
-    "description": "Dad jokes microservice used for testing of Kubernetes, Kong, Istio, Kuma, etc",
-    "keywords": ["framework","micro","api","router","microservices","docker","php","kubernetes","service mesh","istio","kuma"],
-    "homepage": "https://github.com/yesinteractive/dad-jokes_microservice",
+    "description": "Dad jokes microservice used for testing of Kubernetes, Kong, Istio, Kuma, Nginx, Apigee, Mulesoft, etc",
+    "keywords": ["dadjokes","humor","fun","micro","api","router","microservices","docker","php","kubernetes","service mesh","istio","kuma"],
+    "homepage": "https://github.com/yesinteractive/dadjokes",
      "require": {
-        "php": ">=5.5",
-        "yesllc/dadjokes": "*"
+        "php": ">=8.0"
     },
     "license": "MIT",
     "authors": [

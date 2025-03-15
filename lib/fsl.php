@@ -124,13 +124,10 @@ function remove_magic_quotes($array)
   return $array;
 }
 
-if (get_magic_quotes_gpc())
-{
-  $_GET    = remove_magic_quotes($_GET);
-  $_POST   = remove_magic_quotes($_POST);
-  $_COOKIE = remove_magic_quotes($_COOKIE);
-  ini_set('magic_quotes_gpc', 0);
-}
+// Remove magic quotes handling as it is deprecated in PHP 8
+$_GET    = remove_magic_quotes($_GET);
+$_POST   = remove_magic_quotes($_POST);
+$_COOKIE = remove_magic_quotes($_COOKIE);
   
 if(function_exists('set_magic_quotes_runtime') && get_magic_quotes_runtime()) set_magic_quotes_runtime(false);
 
@@ -1321,7 +1318,7 @@ function route_build($method, $path_or_array, $callback, $options = array())
 
   if($path[0] == "^")
   {
-    if($path{strlen($path) - 1} != "$") $path .= "$";
+    if($path[strlen($path) - 1] != "$") $path .= "$";
      $pattern = "#".$path."#i";
   }
   else if(empty($path) || $path == "/")
