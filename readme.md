@@ -8,12 +8,12 @@
 
 
 
-Just a sample microservice or echo service used for testing API Gateways such as Kong, Kubernetes K8s, Openshift, Docker, 
+Just a sample humurous microservice or echo service used for testing API Gateways such as Kong, Kubernetes K8s, Openshift, Docker, 
 Service meshes such as Kuma or Istio, etc. as an alternative to httpbin. Feel free 
 to [add your own jokes](https://github.com/yesinteractive/dadjokes/blob/master/controllers/jokes.txt) 
-to this repo as well. In addition to a dad joke, the service will automatically echo back information about the 
-incoming request. This is helpful for testing and troubleshooting. If you wish to not display echo back the request 
-data, then just make the request against the `/noecho` endpoint or by configuring the dadjokes service with the noecho environment variable set to true. 
+to this repo as well. In addition to a dad joke, the service will optionally echo back information about the 
+incoming request. This is helpful for testing and troubleshooting things like API gateways or proxies. See below for instructions on how to
+enable echoing per request or by default.
 
 ## Hosted Service / Demo ##
 
@@ -30,46 +30,25 @@ Access [http://dadjokes.online](http://dadjokes.online) to see the service in ac
 **Successful Response** : `200 OK`
 
 ```json
-    "Joke": {
-        "Opener": "I burned 2000 calories today",
-        "Punchline": "I left my food in the oven for too long.",
-        "Processing Time": "0.001223"
-    },
-    "RequestEcho": {
-        "Headers": {
-            "Host": "dadjokes.online",
-            "Connection": "keep-alive",
-            "X-Forwarded-For": "74.11.135.11",
-            "X-Forwarded-Proto": "http",
-            "X-Forwarded-Host": "dadjokes.online",
-            "X-Forwarded-Port": "80",
-            "X-Real-IP": "74.11.135.11",
-            "Cache-Control": "max-age=0",
-            "Upgrade-Insecure-Requests": "1",
-            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.61 Safari/537.36",
-            "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9",
-            "Accept-Encoding": "gzip, deflate",
-            "Accept-Language": "en-US,en;q=0.9",
-            "Cookie": "fsl=eijse8smkrfce80or4frpjnf87"
-        },
-        "Method": "GET",
-        "Origin": "192.11.166.11",
-        "URI": "/echo",
-        "Arguments": {
-            "uri": "/echo"
-        },
-        "Data": "",
-        "URL": "http://dadjokes.online/echo"
-    }
+{
+  "Joke": {
+    "Opener": "What did one wall say to the other wall?",
+    "Punchline": "I'll meet you at the corner.",
+    "Processing Time": "0.000537"
+  },
+  "DadJokesInfo": {
+    "SourceCode": "https://github.com/yesinteractive/dadjokes",
+    "Version": "20250315"
+  }
 }
 ```
 
-### DISABLING THE ECHO FEATURE ###
+### ENABLING THE ECHO FEATURE ###
 
-To disable the echoing of in the incomfing response, simply add the docker environment variable `DADJOKES_NOECHO=TRUE` to your configuration or simply use the `\noecho` endpoint in
-the first level of your request calls. For example:
+To enable the echoing of in the incoming request back into the response, simply add the docker environment variable `DADJOKES_NOECHO=FALSE` to your configuration or simply use the `/echo`  anywhere in
+your request calls or as part of a query string. For example:
 
-**Endpoint URI** : `/noecho/abc/efg/`
+**Endpoint URI** : `/echo/abc/efg/`
 
 **Method** : `GET` `POST` `PUT` `PATCH` `DELETE`
 
@@ -79,13 +58,49 @@ the first level of your request calls. For example:
 
 ```json
 {
-  "Jokes": {
-    "Opener": "What did the mountain climber name his son?",
-    "Punchline": "Cliff",
-    "Processing Time": "0.001530"
+  "Joke": {
+    "Opener": "What do you call a deer with no eyes?",
+    "Punchline": "No idea!",
+    "Processing Time": "0.000434"
+  },
+  "RequestEcho": {
+    "Headers": {
+      "Host": "somehost.com",
+      "Connection": "keep-alive",
+      "sec-ch-ua": "\"Chromium\";v=\"134\", \"Not:A-Brand\";v=\"24\", \"Google Chrome\";v=\"134\"",
+      "sec-ch-ua-mobile": "?0",
+      "sec-ch-ua-platform": "\"Windows\"",
+      "DNT": "1",
+      "Upgrade-Insecure-Requests": "1",
+      "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36",
+      "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7",
+      "Accept-Encoding": "gzip, deflate, br, zstd",
+      "Accept-Language": "en-US,en;q=0.9",
+      "Cookie": "mycooking=myvalue;"
+    },
+    "Method": "GET",
+    "Origin": "123.45.67.123",
+    "URI": "/echo/abc/efg/",
+    "Arguments": {
+      "uri": "/echo/abc/efg/"
+    },
+    "Data": "",
+    "URL": "https://somehost.com/echo/abc/efg/"
+  },
+  "DadJokesInfo": {
+    "SourceCode": "https://github.com/yesinteractive/dadjokes",
+    "Version": "20250315"
   }
 }
 ```
+
+### BEHIND REVERSE PROXY CONFIGURATION ###
+
+If behind an API gateway or reverse proxy, you may wish to have only the URI of the original request
+echoed back and not the URI of the upstream proxy target. To do this you may add the docker environment
+variable `DADJOKES_BEHIND_PROXY=TRUE` to your configuration or set the global `behind_proxy`configuration
+to true in the `config/fsl_config.php` file.
+
 
 ## Installation ##
 
@@ -99,7 +114,7 @@ Docker image is Alpine 3.11 based running PHP 7.3 on Apache. The containter expo
 ```
 docker pull yesinteractive/dadjokes
 ```
-Typical basic usage (below example exposes dadjokes on host ports 8100 and 8143):
+Typical basic usage (below example exposes dadjokes on host ports 8100 and 8143 and enables auto echo of request data):
 
 ```
 $ docker run -d \
