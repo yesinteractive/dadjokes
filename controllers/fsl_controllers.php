@@ -17,6 +17,12 @@ function api()
 
     $headers = getallheaders();
 
+    if (option('behind_proxy') == TRUE || getenv("DADJOKES_BEHIND_PROXY") == "TRUE") {
+        if (isset($headers['X-Forwarded-Host'])) {
+            $headers['HOST'] = $headers['X-Forwarded-Host'];
+        }
+    }
+
     if((!empty($_SERVER['QUERY_STRING']) && strpos($_SERVER['QUERY_STRING'], 'echo') !== false) || getenv("DADJOKES_NOECHO") == "FALSE"){
         $request = ["RequestEcho"=>["Headers"=>$headers,
             "Method"=>$_SERVER['REQUEST_METHOD'],
