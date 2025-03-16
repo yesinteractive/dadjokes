@@ -9,7 +9,7 @@ function configure()
   option('base_uri', "/"); //set if app is not in web root directory but in a subdirectory...
   option('session', 'fsl'); // enable with a specific session name
   option('behind_proxy', FALSE);  //enabled if behind gateway or balancer like Kong
-  option('release', '20250313');  //enabled if behind gateway or balancer like Kong
+  option('release', '20250315');
   
   //##############################################
   //encryption configuration
