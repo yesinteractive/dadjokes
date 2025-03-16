@@ -1,5 +1,5 @@
 FROM alpine:3.11
-MAINTAINER YesInteractive- https://github.com/yesinteractive/dadjokes
+MAINTAINER yes!nteractive - https://github.com/yesinteractive/dadjokes
 
 # Install modules and updates
 RUN apk update \

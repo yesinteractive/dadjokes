@@ -19,7 +19,7 @@ function api()
 
     if (option('behind_proxy') == TRUE || getenv("DADJOKES_BEHIND_PROXY") == "TRUE") {
         if (isset($headers['X-Forwarded-Host'])) {
-            $headers['HOST'] = $headers['X-Forwarded-Host'];
+            $headers['Host'] = $headers['X-Forwarded-Host'];
         }
     }
 
