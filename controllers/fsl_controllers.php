@@ -22,6 +22,7 @@ function api()
             "Method"=>$_SERVER['REQUEST_METHOD'],
             "Origin"=>$_SERVER['REMOTE_ADDR'],
             "URI"=>(option('behind_proxy') == TRUE || getenv("DADJOKES_BEHIND_PROXY") == "TRUE" ? $_REQUEST['uri'] : preg_replace('/\?.*/', '', $_SERVER['REQUEST_URI'])),
+            "HOST"=>(option('behind_proxy') == TRUE || getenv("DADJOKES_BEHIND_PROXY") == "TRUE" ? ($headers['X-Forwarded-Host'] ?? $_SERVER['HTTP_HOST']) : $_SERVER['HTTP_HOST']),
             "Arguments"=>$_REQUEST,
             "Data"=>file_get_contents('php://input'),
             "URL"=>(isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://"
